@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Fly
+  - Fire
+  - Hook
+  - Hookable
+  - ground
+  - Water
+  - Animal
   layers:
   - Default
   - TransparentFX
@@ -13,6 +20,7 @@ TagManager:
   - UI
   - 
   - 
+  - Ground
   - 
   - 
   - 
@@ -24,8 +32,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Animal
   - 
   - 
   - 
