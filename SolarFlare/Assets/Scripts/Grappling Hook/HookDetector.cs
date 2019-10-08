@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HookDetector : MonoBehaviour
 {
-
     public GameObject player;
 
     private GrapplingHook grapplingHook;
