@@ -8,6 +8,7 @@ public class TransformFollower : MonoBehaviour
     [SerializeField] private Space offsetPositionSpace = Space.Self;
     [SerializeField] private bool lookAt = true;
     [SerializeField] private bool m_AutoTargetPlayer = true;  // Whether the rig should automatically target the player.
+    [SerializeField] private float sensitivity;
 
     protected virtual void Start()
     {
@@ -16,6 +17,14 @@ public class TransformFollower : MonoBehaviour
         if (m_AutoTargetPlayer)
         {
             FindAndTargetPlayer();
+        }
+        if (lookAt)
+        {
+            transform.LookAt(target);
+        }
+        else
+        {
+            transform.rotation = target.rotation;
         }
     }
 
@@ -26,6 +35,10 @@ public class TransformFollower : MonoBehaviour
         {
             FindAndTargetPlayer();
         }
+        float rotateHorizontal = Input.GetAxis("Mouse X");
+        float rotateVertical = Input.GetAxis("Mouse Y");
+        //transform.Rotate(-transform.up * rotateHorizontal * sensitivity); //use transform.Rotate(-transform.up * rotateHorizontal * sensitivity) instead if you dont want the camera to rotate around the player
+        //transform.Rotate(transform.right * rotateVertical * sensitivity); // again, use transform.Rotate(transform.right * rotateVertical * sensitivity) if you don't want the camera to rotate around the player
     }
 
     public void FindAndTargetPlayer()
@@ -68,7 +81,7 @@ public class TransformFollower : MonoBehaviour
         }
 
         // compute rotation
-        if (lookAt)
+         if (lookAt)
         {
             transform.LookAt(target);
         }

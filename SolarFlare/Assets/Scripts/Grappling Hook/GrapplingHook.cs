@@ -15,9 +15,10 @@ public class GrapplingHook : MonoBehaviour
     [HideInInspector] public bool hooked;
     [HideInInspector] public GameObject hookedObj;
 
-    private CharacterController m_controller;
+    //private CharacterController m_controller;
 
     private float currentDistance;
+    private Camera mainCamera;
 
     private bool grounded;
     private LineRenderer rope;
@@ -25,7 +26,12 @@ public class GrapplingHook : MonoBehaviour
     private void Start()
     {
         rope = hook.GetComponent<LineRenderer>();
-        m_controller = GetComponent<CharacterController>();
+        //m_controller = GetComponent<CharacterController>();
+        mainCamera = Camera.main;
+        if (mainCamera == null)
+        {
+            Debug.LogWarning("No main camera");
+        }
     }
 
     private void Update()
@@ -61,8 +67,8 @@ public class GrapplingHook : MonoBehaviour
         if (hooked && fired)
         {
             hook.transform.parent = hookedObj.transform;
-            //transform.position = Vector3.MoveTowards(transform.position, hook.transform.position, Time.deltaTime * playerTravelSpeed);
-            m_controller.Move(hook.transform.position * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, hook.transform.position, Time.deltaTime * playerTravelSpeed);
+            //m_controller.Move(hook.transform.position * Time.deltaTime);
             float distanceToHook = Vector3.Distance(transform.position, hook.transform.position);
 
             this.GetComponent<Rigidbody>().useGravity = false;
@@ -72,10 +78,10 @@ public class GrapplingHook : MonoBehaviour
             {
                 if (!grounded)
                 {
-                    m_controller.Move(Vector3.forward * Time.deltaTime * 13f);
-                    m_controller.Move(Vector3.up * Time.deltaTime * 18f);
-                    //this.transform.Translate(Vector3.forward * Time.deltaTime * 13f);
-                    //this.transform.Translate(Vector3.up * Time.deltaTime * 18f);
+                    //m_controller.Move(Vector3.forward * Time.deltaTime * 13f);
+                    //m_controller.Move(Vector3.up * Time.deltaTime * 18f);
+                    this.transform.Translate(Vector3.forward * Time.deltaTime * 13f);
+                    this.transform.Translate(Vector3.up * Time.deltaTime * 18f);
                 }
 
                 StartCoroutine("Climb");

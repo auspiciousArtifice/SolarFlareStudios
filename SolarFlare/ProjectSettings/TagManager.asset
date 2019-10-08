@@ -21,6 +21,8 @@ TagManager:
   - 
   - 
   - Ground
+  - Hook
+  - Player
   - 
   - 
   - 
@@ -31,8 +33,6 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - Animal
   - 
   - 
   - 
