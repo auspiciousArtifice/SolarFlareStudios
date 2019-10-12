@@ -57,7 +57,8 @@ public class GrapplingHook : MonoBehaviour
 
         if (fired && !hooked)
         {
-            hook.transform.Translate(Vector3.forward * Time.deltaTime * hookTravelSpeed);
+            //hook.transform.Translate(Vector3.forward * Time.deltaTime * hookTravelSpeed);
+            hook.transform.position = hook.transform.position + Vector3.Normalize(mainCamera.transform.forward) * hookTravelSpeed * Time.deltaTime;
             currentDistance = Vector3.Distance(transform.position, hook.transform.position);
 
             if (currentDistance >= maxDistance)
