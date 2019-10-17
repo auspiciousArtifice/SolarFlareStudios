@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseAimCamera : MonoBehaviour
 {
     public Transform player;
-    // public Texture crosshair; // crosshair - removed it for quick and easy setup. ben0bi
+     public Texture crosshair; // crosshair - removed it for quick and easy setup. ben0bi
     // if you add the crosshair, you need to drag a crosshair texture on the "crosshair" variable in the inspector
 
     protected Transform aimTarget; // that was public and a gameobject had to be dragged on it. - ben0bi
@@ -121,11 +121,11 @@ public class MouseAimCamera : MonoBehaviour
     }
 
     // uncomment this if you want to have a crosshair - ben0bi
-    /*
+    
     void OnGUI ()
     {
         if (Time.time != 0 && Time.timeScale != 0)
-            GUI.DrawTexture(new Rect(Screen.width/2-(crosshair.width*0.5f), Screen.height/2-(crosshair.height*0.5f), crosshair.width, crosshair.height), crosshair);
+            GUI.DrawTexture(new Rect(Screen.width/2-(crosshair.width*0.5f), Screen.height/2-(crosshair.height*0.5f)+20, crosshair.width, crosshair.height), crosshair);
     }
-    */
+    
 }
