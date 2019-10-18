@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8667140777445833862}
   - component: {fileID: 8667140777445833859}
   - component: {fileID: 563214324}
+  - component: {fileID: 4102004513170127929}
   m_Layer: 10
   m_Name: PlayerTPS
   m_TagString: Player
@@ -120,6 +121,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4102004513170127929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667140777445833857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae2345ffec340b4888ffa9a96e7457a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 1
+  currentHealth: 0
+  maxHealth: 4
+  deathClip: {fileID: 0}
+  damageClip: {fileID: 0}
+  healingClip: {fileID: 0}
 --- !u!1001 &7731514213387530084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,11 +237,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8667140777445833856}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: f6eed04e247e56342918693c6c96d393,
-        type: 3}
-      propertyPath: m_Name
-      value: knight_d_pelegrini@T-Pose
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f6eed04e247e56342918693c6c96d393,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -277,6 +291,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f6eed04e247e56342918693c6c96d393,
+        type: 3}
+      propertyPath: m_Name
+      value: knight_d_pelegrini@T-Pose
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6eed04e247e56342918693c6c96d393, type: 3}
