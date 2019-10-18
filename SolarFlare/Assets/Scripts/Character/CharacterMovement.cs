@@ -20,6 +20,7 @@ public class CharacterMovement : MonoBehaviour
     private bool m_jump;
     private bool m_dance;
     private bool m_dash;
+	private bool m_sprint;
     private float inputForward = 0f;
     private float inputTurn = 0f;
 
@@ -68,13 +69,14 @@ public class CharacterMovement : MonoBehaviour
         Move();
         Jump();
         Dash();
+		Sprint();
         //Rotate();
         Dance();
 
-        // Apply move vector
-        //m_controller.Move(this.transform.forward * inputForward * Time.deltaTime * moveSpeed);
+		// Apply move vector
+		//m_controller.Move(this.transform.forward * inputForward * Time.deltaTime * moveSpeed);
 
-        //m_controller.Move(move * Time.deltaTime);
+		//m_rigidbody.AddForce(move * Time.deltaTime);
 
         // send input and other state parameters to the animator
         UpdateAnimator();
@@ -97,6 +99,18 @@ public class CharacterMovement : MonoBehaviour
         inputTurn = Mathf.Lerp(inputTurn, h,
             Time.deltaTime * turnInputFilter);
     }
+
+	private void Sprint()
+	{
+		if (Input.GetButtonDown("Fire3"))
+		{
+			m_sprint = true;
+		} 
+		else if (Input.GetButtonUp("Fire3"))
+		{
+			m_sprint = false;
+		}
+	}
 
     // Apply rotation
     private void Rotate()
@@ -127,14 +141,14 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButtonDown("Dash"))
         {
             Debug.Log("Dash");
-            move += Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
-                                        (Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime)));
+            //move += Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
+                                       // (Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime)));
             m_dash = true;
 
         }
-        move.x /= 1 + Drag.x * Time.deltaTime;
-        move.y /= 1 + Drag.y * Time.deltaTime;
-        move.z /= 1 + Drag.z * Time.deltaTime;
+        //move.x /= 1 + Drag.x * Time.deltaTime;
+        //move.y /= 1 + Drag.y * Time.deltaTime;
+        //move.z /= 1 + Drag.z * Time.deltaTime;
     }
 
     private void Dance()
@@ -178,6 +192,7 @@ public class CharacterMovement : MonoBehaviour
         m_animator.SetBool("Jump", m_jump);
         m_animator.SetBool("Dance", m_dance);
         m_animator.SetBool("Dash", m_dash);
+		m_animator.SetBool("Sprint", m_sprint);
         //m_animator.speed = animationSpeed;
     }
 }
