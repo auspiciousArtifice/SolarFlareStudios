@@ -11,6 +11,8 @@ TagManager:
   - ground
   - Water
   - Animal
+  - Notifications
+  - timer
   layers:
   - Default
   - TransparentFX
