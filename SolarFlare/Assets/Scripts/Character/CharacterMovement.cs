@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
     private AudioSource playerAudio;
 
     private Rigidbody m_rigidbody;
+    private Collider m_collider;
     private Animator m_animator;
 
     private Transform leftFoot;
@@ -30,15 +31,9 @@ public class CharacterMovement : MonoBehaviour
     public float turnInputFilter = 5f;
     private float forwardSpeedLimit = 1f;
 
-    private int groundContactCount = 0;
+    //private int groundContactCount;
 
-    public bool IsGrounded
-    {
-        get
-        {
-            return groundContactCount > 0;
-        }
-    }
+    private bool isGrounded;
 
     void Awake()
     {
@@ -50,7 +45,15 @@ public class CharacterMovement : MonoBehaviour
         if (m_rigidbody == null)
             Debug.Log("Rigid body could not be found");
 
+<<<<<<< HEAD
         playerAudio = GetComponent<AudioSource>();
+=======
+        m_collider = GetComponent<Collider>();
+        if (m_collider == null)
+        {
+            Debug.Log("Collider could not be found for player object.");
+        }
+>>>>>>> 6226a501779a3d78a18d2b8cb4182080711d3af1
 
         /*m_controller = GetComponent<CharacterController>();
         if (m_controller == null)
@@ -74,8 +77,9 @@ public class CharacterMovement : MonoBehaviour
         Jump();
         Dash();
 		Sprint();
+        
         //Rotate();
-        Dance();
+        //Dance();
 
 		// Apply move vector
 		//m_controller.Move(this.transform.forward * inputForward * Time.deltaTime * moveSpeed);
@@ -103,14 +107,19 @@ public class CharacterMovement : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
         float v = Input.GetAxisRaw("Vertical"); // setup v variables as our vertical input axis
 
-        h = h * Mathf.Sqrt(1f - 0.5f * v * v);
-        v = v * Mathf.Sqrt(1f - 0.5f * h * h);
+        if (isGrounded)
+        {
+            h = h * Mathf.Sqrt(1f - 0.5f * v * v);
+            v = v * Mathf.Sqrt(1f - 0.5f * h * h);
 
-        inputForward = Mathf.Clamp(Mathf.Lerp(inputForward, v,
-            Time.deltaTime * forwardInputFilter), -forwardSpeedLimit, forwardSpeedLimit);
-
-        inputTurn = Mathf.Lerp(inputTurn, h,
-            Time.deltaTime * turnInputFilter);
+            inputForward = Mathf.Clamp(Mathf.Lerp(inputForward, v,
+                Time.deltaTime * forwardInputFilter), -forwardSpeedLimit, forwardSpeedLimit);
+        }
+        else
+        {
+            m_rigidbody.AddForce(transform.forward * v * 10);
+        }
+        inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
     }
 
 	private void Sprint()
@@ -134,7 +143,7 @@ public class CharacterMovement : MonoBehaviour
     // makes character jump if on ground and press space
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             //move.y = JumpHeight;
             m_jump = true;
@@ -154,8 +163,10 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButtonDown("Dash"))
         {
             Debug.Log("Dash");
-            //move += Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
-                                       // (Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime)));
+
+            m_rigidbody.AddForce(m_rigidbody.transform.forward * 10);
+            //m_rigidbody.MovePosition(Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
+                                       //(Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime))));
             m_dash = true;
 
         }
@@ -164,13 +175,13 @@ public class CharacterMovement : MonoBehaviour
         //move.z /= 1 + Drag.z * Time.deltaTime;
     }
 
-    private void Dance()
-    {
-        if (Input.GetKeyDown("k"))
-        {
-            m_dance = !m_dance;
-        }
-    }
+    //private void Dance()
+    //{
+    //    if (Input.GetKeyDown("k"))
+    //    {
+    //        m_dance = !m_dance;
+    //    }
+    //}
 
     /*private void OnAnimatorMove()
     {
@@ -204,8 +215,24 @@ public class CharacterMovement : MonoBehaviour
         m_animator.SetFloat("Turn", inputTurn);
         m_animator.SetBool("Jump", m_jump);
         m_animator.SetBool("Dance", m_dance);
+        m_animator.SetBool("Sprint", m_sprint);
         m_animator.SetBool("Dash", m_dash);
-		m_animator.SetBool("Sprint", m_sprint);
         //m_animator.speed = animationSpeed;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "ground")
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "ground")
+        {
+            isGrounded = false;
+        }
     }
 }
