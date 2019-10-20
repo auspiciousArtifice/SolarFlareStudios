@@ -100,7 +100,7 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
 
-        anim.SetTrigger("Die");
+        anim.SetBool("Death", isDead);
         currentHealth = 0;
         ClampHealth();
 
@@ -117,7 +117,6 @@ public class PlayerHealth : MonoBehaviour
         if (playerLives >= 0)
         {
             GameManager_Master.Instance.CallPlayerDied();
-			print("called");
         }
         else
         {
