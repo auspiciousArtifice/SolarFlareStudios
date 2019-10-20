@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964128, b: 0.5748173, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -290,7 +290,7 @@ PrefabInstance:
     - target: {fileID: 8787436335450829600, guid: 2958e0839fc087846a1eec9f4d460d7a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -12.200012
+      value: -12.199951
       objectReference: {fileID: 0}
     - target: {fileID: 8787436335450829600, guid: 2958e0839fc087846a1eec9f4d460d7a,
         type: 3}
@@ -1024,7 +1024,7 @@ GameObject:
   - component: {fileID: 301401167}
   m_Layer: 0
   m_Name: Floating Island (2)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1292,7 +1292,7 @@ GameObject:
   - component: {fileID: 409066047}
   m_Layer: 0
   m_Name: Floating Island (1)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2754,7 +2754,7 @@ GameObject:
   - component: {fileID: 924279825}
   m_Layer: 0
   m_Name: MovingPlatforms
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3184,7 +3184,7 @@ GameObject:
   - component: {fileID: 1051839132}
   m_Layer: 0
   m_Name: FloatingIslands
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -4625,7 +4625,7 @@ GameObject:
   - component: {fileID: 1721670571}
   m_Layer: 0
   m_Name: Floating Island (3)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -5711,11 +5711,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floating Island
-      objectReference: {fileID: 0}
-    - target: {fileID: 776685649615299016, guid: b2b7e768ef5bd9144bc523e456e37eb7,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 776685649615299012, guid: b2b7e768ef5bd9144bc523e456e37eb7,
         type: 3}
