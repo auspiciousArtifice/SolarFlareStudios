@@ -8,8 +8,12 @@ public class UI_Manager : MonoBehaviour
 
     float levelTime = 0;
     float LEVEL_END_TIME = 300;
+    int coinNum = 0;
     GameObject textObj;
     GameObject timer;
+    GameObject coinHud;
+    GameObject endScreen;
+    GameObject character;
 
     // Start is called before the first frame update
 
@@ -17,6 +21,10 @@ public class UI_Manager : MonoBehaviour
     {
         textObj = GameObject.FindGameObjectWithTag("Notifications");
         timer = GameObject.FindGameObjectWithTag("timer");
+        coinHud = GameObject.FindGameObjectWithTag("coin_hud");
+        endScreen = GameObject.FindGameObjectWithTag("end_screen");
+        character = GameObject.FindGameObjectWithTag("Player");
+
         if (textObj == null)
         {
             Debug.Log("Didn't find notifications bar");
@@ -26,9 +34,12 @@ public class UI_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // this shouldn't be necessary but...
+        // this shouldn't be necessary but... it was buggy so here we are
         textObj = GameObject.FindGameObjectWithTag("Notifications");
         timer = GameObject.FindGameObjectWithTag("timer");
+        coinHud = GameObject.FindGameObjectWithTag("coin_hud");
+        endScreen = GameObject.FindGameObjectWithTag("end_screen");
+        character = GameObject.FindGameObjectWithTag("Player");
 
         string message = "";
         if (levelTime < 5)
@@ -51,10 +62,18 @@ public class UI_Manager : MonoBehaviour
             message = "";
         }
 
-
         // makle the text updates
         textObj.GetComponent<Text>().text = message;
         timer.GetComponent<Text>().text = ((int)levelTime).ToString();
+        coinNum = character.GetComponent<Coin_Counter>().getCoinCount();
+        coinHud.GetComponent<Text>().text = coinNum.ToString();
+
+        Debug.Log(coinNum);
+
+        endScreen.GetComponent<Text>().text =
+            "Congratulations!!\n" +
+            "You won the game with " + coinNum + " coins and in " + ((int)levelTime) + " seconds.\n" +
+            "Try again to beat this score!";
 
         levelTime += Time.deltaTime;
         Debug.Log(levelTime);

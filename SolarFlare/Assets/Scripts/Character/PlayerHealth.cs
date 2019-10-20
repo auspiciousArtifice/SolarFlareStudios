@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
     public float Health { get { return currentHealth; } }
     public float MaxHealth { get { return maxHealth; } }
 
-    #region Sigleton
+    #region Singleton
     private static PlayerHealth instance;
     public static PlayerHealth Instance
     {

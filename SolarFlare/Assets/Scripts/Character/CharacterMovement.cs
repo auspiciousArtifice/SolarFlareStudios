@@ -7,6 +7,8 @@ public class CharacterMovement : MonoBehaviour
 {
     public float DashDistance = 10f;
     public Vector3 Drag = new Vector3(5f, 0f, 5f);
+    public AudioClip hitGroundAudio;
+    private AudioSource playerAudio;
 
     private Rigidbody m_rigidbody;
     private Animator m_animator;
@@ -48,6 +50,8 @@ public class CharacterMovement : MonoBehaviour
         if (m_rigidbody == null)
             Debug.Log("Rigid body could not be found");
 
+        playerAudio = GetComponent<AudioSource>();
+
         /*m_controller = GetComponent<CharacterController>();
         if (m_controller == null)
             Debug.Log("Character Controller could not be found");*/
@@ -82,6 +86,15 @@ public class CharacterMovement : MonoBehaviour
         UpdateAnimator();
         m_jump = false;
         m_dash = false;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "ground" && hitGroundAudio != false)
+        {
+            playerAudio.clip = hitGroundAudio;
+            playerAudio.Play();
+        }
     }
 
     // Calculate move
