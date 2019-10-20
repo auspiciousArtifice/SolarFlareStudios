@@ -45,15 +45,14 @@ public class CharacterMovement : MonoBehaviour
         if (m_rigidbody == null)
             Debug.Log("Rigid body could not be found");
 
-<<<<<<< HEAD
+
         playerAudio = GetComponent<AudioSource>();
-=======
+
         m_collider = GetComponent<Collider>();
         if (m_collider == null)
         {
             Debug.Log("Collider could not be found for player object.");
         }
->>>>>>> 6226a501779a3d78a18d2b8cb4182080711d3af1
 
         /*m_controller = GetComponent<CharacterController>();
         if (m_controller == null)
@@ -90,15 +89,6 @@ public class CharacterMovement : MonoBehaviour
         UpdateAnimator();
         m_jump = false;
         m_dash = false;
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "ground" && hitGroundAudio != false)
-        {
-            playerAudio.clip = hitGroundAudio;
-            playerAudio.Play();
-        }
     }
 
     // Calculate move
@@ -225,6 +215,12 @@ public class CharacterMovement : MonoBehaviour
         if (collision.gameObject.tag == "ground")
         {
             isGrounded = true;
+        }
+
+        if (collision.gameObject.tag == "ground" && hitGroundAudio != null)
+        {
+            playerAudio.clip = hitGroundAudio;
+            playerAudio.Play();
         }
     }
 
