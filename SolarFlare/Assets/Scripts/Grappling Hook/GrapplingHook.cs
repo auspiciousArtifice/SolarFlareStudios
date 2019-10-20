@@ -24,7 +24,6 @@ public class GrapplingHook : MonoBehaviour
     private float distanceToHook;
     private Camera mainCamera;
 
-    private bool grounded;
     private LineRenderer rope;
 
     private Vector3 HookTrajectory;
@@ -63,8 +62,6 @@ public class GrapplingHook : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0) && (swinging || !hooked))
         {
-            fired = false;
-            swinging = false;
             ReturnHook();
         }
 
@@ -92,7 +89,7 @@ public class GrapplingHook : MonoBehaviour
         if (hooked && fired && !swinging)
         {
             hook.transform.parent = hookedObj.transform;
-            transform.position = Vector3.MoveTowards(transform.position, hook.transform.position, Time.deltaTime * playerTravelSpeed);
+            playerRB.MovePosition(Vector3.MoveTowards(transform.position, hook.transform.position, Time.deltaTime * playerTravelSpeed));
             distanceToHook = Vector3.Distance(hand.transform.position, hook.transform.position);
 
             playerRB.useGravity = false;
@@ -157,20 +154,20 @@ public class GrapplingHook : MonoBehaviour
     }
 
 
-    void CheckIfGrounded()
-    {
-        RaycastHit hit;
-        float distance = 1f;
-        Vector3 dir = new Vector3(0, -1);
+    //void CheckIfGrounded()
+    //{
+    //    RaycastHit hit;
+    //    float distance = 1f;
+    //    Vector3 dir = new Vector3(0, -1);
 
-        if (Physics.Raycast(transform.position, dir, out hit, distance))
-        {
-            grounded = true;
-        }
-        else
-        {
-            grounded = false;
-        }
-    }
+    //    if (Physics.Raycast(transform.position, dir, out hit, distance))
+    //    {
+    //        grounded = true;
+    //    }
+    //    else
+    //    {
+    //        grounded = false;
+    //    }
+    //}
 
 }
