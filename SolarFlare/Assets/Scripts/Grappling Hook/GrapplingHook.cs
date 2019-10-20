@@ -7,8 +7,8 @@ public class GrapplingHook : MonoBehaviour
     public GameObject hookHolder;
     public GameObject hand; // Used to keep track of the "right palm" area of the player with independent movement
 
-    public float hookTravelSpeed = 15f; // speed the hook flies
-    public float playerTravelSpeed = 20f; // speed which it pulls the player
+    public float hookTravelSpeed = 25f; // speed the hook flies
+    public float playerTravelSpeed = 15f; // speed which it pulls the player
     public float maxDistance = 20f;
 
     [HideInInspector] public static bool fired;
@@ -28,6 +28,7 @@ public class GrapplingHook : MonoBehaviour
 
     private Vector3 HookTrajectory;
     private Vector3 futurePos;
+    private Vector3 swingingVelocity;
 
     private Transform originalParent;
 
@@ -62,6 +63,7 @@ public class GrapplingHook : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0) && (swinging || !hooked))
         {
+            playerRB.AddForce(new Vector3(100, 0, 0), ForceMode.Impulse);
             ReturnHook();
         }
 
@@ -115,22 +117,24 @@ public class GrapplingHook : MonoBehaviour
             if ((futurePos - hook.transform.position).magnitude > distanceToHook)
             {
                 playerRB.MovePosition(hook.transform.position + (futurePos - hook.transform.position).normalized * distanceToHook);
-                //playerRB.AddForce(new Vector3(0, (hook.transform.position - transform.position).magnitude * Mathf.Clamp(hook.transform.position.y - transform.position.y, 0f, float.MaxValue), 0));
             }
             else
             {
                 playerRB.MovePosition(futurePos);
             }
-           
+
             Vector3 upVector = playerRB.position - hook.transform.position;
             playerRB.MoveRotation(Quaternion.LookRotation(upVector, Vector3.up));
-            //futurePos = (futurePos - hook.transform.position).normalized * distanceToHook;
-            //transform.position = futurePos;
+            swingingVelocity = playerRB.velocity;
+            //transform.rotation = Quaternion.LookRotation(playerRB.velocity, upVector);
         }
 
-        if (!hooked || !fired)
+        if (!hooked && !fired)
         {
             hook.transform.parent = hookHolder.transform;
+            hook.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+            hook.transform.rotation = hookHolder.transform.rotation;
+            hook.transform.position = hookHolder.transform.position;
         }
 
     }
@@ -143,9 +147,6 @@ public class GrapplingHook : MonoBehaviour
 
     private void ReturnHook()
     {
-        hook.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-        hook.transform.rotation = hookHolder.transform.rotation;
-        hook.transform.position = hookHolder.transform.position;
         fired = false;
         hooked = false;
         swinging = false;

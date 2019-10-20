@@ -10,6 +10,8 @@ public class CharacterMovement : MonoBehaviour
     public AudioClip hitGroundAudio;
     private AudioSource playerAudio;
 
+    private Camera mainCamera;
+
     private Rigidbody m_rigidbody;
     private Collider m_collider;
     private Animator m_animator;
@@ -62,6 +64,12 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         move = new Vector3(0f, 0f, 0f);
+
+        mainCamera = Camera.main;
+        if (mainCamera == null)
+        {
+            Debug.LogWarning("No main camera");
+        }
 
         leftFoot = this.transform.Find("knight_d_pelegrini@T-Pose/Hips/LeftUpLeg/LeftLeg/LeftFoot");
         rightFoot = this.transform.Find("knight_d_pelegrini@T-Pose/Hips/RightUpLeg/RightLeg/RightFoot");
@@ -154,7 +162,7 @@ public class CharacterMovement : MonoBehaviour
         {
             Debug.Log("Dash");
 
-            m_rigidbody.AddForce(m_rigidbody.transform.forward * 10);
+            m_rigidbody.AddForce(mainCamera.transform.forward * 100, ForceMode.Impulse);
             //m_rigidbody.MovePosition(Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
                                        //(Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime))));
             m_dash = true;
