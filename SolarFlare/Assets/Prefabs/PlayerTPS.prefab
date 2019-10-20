@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8667140777445833859}
   - component: {fileID: 563214324}
   - component: {fileID: 4102004513170127929}
+  - component: {fileID: -2917718155690935460}
   m_Layer: 10
   m_Name: PlayerTPS
   m_TagString: Player
@@ -137,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DashDistance: 10
   Drag: {x: 0, y: 0, z: 0}
+  hitGroundAudio: {fileID: 0}
   forwardInputFilter: 5
   turnInputFilter: 5
 --- !u!136 &563214324
@@ -171,6 +173,18 @@ MonoBehaviour:
   deathClip: {fileID: 0}
   damageClip: {fileID: 0}
   healingClip: {fileID: 0}
+--- !u!114 &-2917718155690935460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667140777445833857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6f581c536ffa64c8234228bd22ad01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6502948460033952998
 PrefabInstance:
   m_ObjectHideFlags: 0
