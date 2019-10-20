@@ -13,6 +13,9 @@ TagManager:
   - Animal
   - Notifications
   - timer
+  - end_screen
+  - coin_hud
+  - PickUp
   layers:
   - Default
   - TransparentFX

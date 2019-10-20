@@ -7,6 +7,8 @@ public class CharacterMovement : MonoBehaviour
 {
     public float DashDistance = 10f;
     public Vector3 Drag = new Vector3(5f, 0f, 5f);
+    public AudioClip hitGroundAudio;
+    private AudioSource playerAudio;
 
     private Rigidbody m_rigidbody;
     private Collider m_collider;
@@ -42,6 +44,9 @@ public class CharacterMovement : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
         if (m_rigidbody == null)
             Debug.Log("Rigid body could not be found");
+
+
+        playerAudio = GetComponent<AudioSource>();
 
         m_collider = GetComponent<Collider>();
         if (m_collider == null)
@@ -210,6 +215,12 @@ public class CharacterMovement : MonoBehaviour
         if (collision.gameObject.tag == "ground")
         {
             isGrounded = true;
+        }
+
+        if (collision.gameObject.tag == "ground" && hitGroundAudio != null)
+        {
+            playerAudio.clip = hitGroundAudio;
+            playerAudio.Play();
         }
     }
 
