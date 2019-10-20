@@ -68,15 +68,12 @@ public class UI_Manager : MonoBehaviour
         coinNum = character.GetComponent<Coin_Counter>().getCoinCount();
         coinHud.GetComponent<Text>().text = coinNum.ToString();
 
-        Debug.Log(coinNum);
-
         endScreen.GetComponent<Text>().text =
             "Congratulations!!\n" +
             "You won the game with " + coinNum + " coins and in " + ((int)levelTime) + " seconds.\n" +
             "Try again to beat this score!";
 
         levelTime += Time.deltaTime;
-        Debug.Log(levelTime);
         
         if (levelTime > LEVEL_END_TIME)
         {
