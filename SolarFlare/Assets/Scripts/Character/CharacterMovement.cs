@@ -10,6 +10,8 @@ public class CharacterMovement : MonoBehaviour
     public AudioClip hitGroundAudio;
     private AudioSource playerAudio;
 
+    private Camera mainCamera;
+
     private Rigidbody m_rigidbody;
     private Collider m_collider;
     private Animator m_animator;
@@ -18,6 +20,7 @@ public class CharacterMovement : MonoBehaviour
     private Transform rightFoot;
 
     private Vector3 move;
+    private Vector3 dashDirection;
 
     // Animator variables
     private bool m_jump;
@@ -63,6 +66,12 @@ public class CharacterMovement : MonoBehaviour
     {
         move = new Vector3(0f, 0f, 0f);
 
+        mainCamera = Camera.main;
+        if (mainCamera == null)
+        {
+            Debug.LogWarning("No main camera");
+        }
+
         leftFoot = this.transform.Find("knight_d_pelegrini@T-Pose/Hips/LeftUpLeg/LeftLeg/LeftFoot");
         rightFoot = this.transform.Find("knight_d_pelegrini@T-Pose/Hips/RightUpLeg/RightLeg/RightFoot");
 
@@ -87,8 +96,8 @@ public class CharacterMovement : MonoBehaviour
 
         // send input and other state parameters to the animator
         UpdateAnimator();
-        m_jump = false;
         m_dash = false;
+        m_jump = false;
     }
 
     // Calculate move
@@ -150,11 +159,13 @@ public class CharacterMovement : MonoBehaviour
     // makes character dash if press left alt
     private void Dash()
     {
-        if (Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash") && !m_dash)
         {
             Debug.Log("Dash");
 
-            m_rigidbody.AddForce(m_rigidbody.transform.forward * 10);
+            dashDirection = mainCamera.transform.forward.normalized;
+            dashDirection.Scale(new Vector3(5, .5f, 5));
+            m_rigidbody.AddForce(dashDirection * 100, ForceMode.Impulse);
             //m_rigidbody.MovePosition(Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
                                        //(Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime))));
             m_dash = true;
@@ -215,6 +226,8 @@ public class CharacterMovement : MonoBehaviour
         if (collision.gameObject.tag == "ground")
         {
             isGrounded = true;
+            m_jump = false;
+            m_dash = false;
         }
 
         if (collision.gameObject.tag == "ground" && hitGroundAudio != null)
