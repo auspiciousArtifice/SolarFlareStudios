@@ -22,6 +22,9 @@ Assets/AssetStoreTools*
 # Visual Studio cache directory
 .vs/
 
+# Ignore DS_Store for Macs
+.DS_Store
+
 # Gradle cache directory
 .gradle/
 

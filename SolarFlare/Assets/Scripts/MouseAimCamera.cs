@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseAimCamera : MonoBehaviour
 {
     public Transform player;
-     public Texture crosshair; // crosshair - removed it for quick and easy setup. ben0bi
+    public Texture crosshair; // crosshair - removed it for quick and easy setup. ben0bi
     // if you add the crosshair, you need to drag a crosshair texture on the "crosshair" variable in the inspector
 
     protected Transform aimTarget; // that was public and a gameobject had to be dragged on it. - ben0bi
@@ -35,8 +35,9 @@ public class MouseAimCamera : MonoBehaviour
         // [edit] no aimtarget gameobject needs to be placed anymore - ben0bi
         GameObject g = new GameObject();
         aimTarget = g.transform;
-        // Add player's own layer to mask
-        mask = 1 << player.gameObject.layer;
+		player = GameObject.FindGameObjectWithTag("Player").transform;
+		// Add player's own layer to mask
+		mask = 1 << player.gameObject.layer;
         // Add Igbore Raycast layer to mask
         mask |= 1 << LayerMask.NameToLayer("Ignore Raycast");
         // Invert mask
