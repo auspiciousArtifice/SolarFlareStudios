@@ -63,7 +63,10 @@ public class GrapplingHook : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0) && (swinging || !hooked))
         {
-            playerRB.AddForce(new Vector3(100, 0, 0), ForceMode.Impulse);
+            if (swinging)
+            {
+                playerRB.AddForce(swingingVelocity * 100 * Time.deltaTime, ForceMode.Impulse);
+            }
             ReturnHook();
         }
 
