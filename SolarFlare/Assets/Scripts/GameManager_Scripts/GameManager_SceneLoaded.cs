@@ -7,16 +7,21 @@ namespace GameManager
 {
     public class GameManager_SceneLoaded : MonoBehaviour
     {
-        private Transform SpawnPoint;
+        public Transform SpawnPoint;
         public GameObject PlayerPrefab;
         private void OnEnable()
         {
-            SpawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
+            if (SpawnPoint == null)
+            {
+                Debug.LogWarning("spawn point not set");
+            }
+
             SceneManager.sceneLoaded += OnLevelFinishedLoading;
             if (PlayerPrefab == null)
             {
                 Debug.LogWarning("player prefab not set");
             }
+            DontDestroyOnLoad(SpawnPoint.gameObject);
         }
 
         private void OnDisable()
