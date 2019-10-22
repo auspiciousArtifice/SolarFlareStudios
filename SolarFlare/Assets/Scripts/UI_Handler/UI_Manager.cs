@@ -63,12 +63,10 @@ public class UI_Manager : MonoBehaviour
         }
 
         // makle the text updates
-        textObj.GetComponent<Text>().text = message;
-        timer.GetComponent<Text>().text = ((int)levelTime).ToString();
-        coinNum = character.GetComponent<Coin_Counter>().getCoinCount();
-        coinHud.GetComponent<Text>().text = coinNum.ToString();
-
-        Debug.Log(coinNum);
+        if (textObj != null) textObj.GetComponent<Text>().text = message;
+        if (timer != null) timer.GetComponent<Text>().text = ((int)levelTime).ToString();
+        if (character != null) coinNum = character.GetComponent<Coin_Counter>().getCoinCount();
+        if (coinHud != null) coinHud.GetComponent<Text>().text = coinNum.ToString();
 
         endScreen.GetComponent<Text>().text =
             "Congratulations!!\n" +
@@ -76,7 +74,6 @@ public class UI_Manager : MonoBehaviour
             "Try again to beat this score!";
 
         levelTime += Time.deltaTime;
-        Debug.Log(levelTime);
         
         if (levelTime > LEVEL_END_TIME)
         {
