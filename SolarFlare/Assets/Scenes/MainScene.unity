@@ -1803,7 +1803,7 @@ GameObject:
   - component: {fileID: 301401167}
   m_Layer: 0
   m_Name: Floating Island (2)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2263,7 +2263,7 @@ GameObject:
   - component: {fileID: 409066047}
   m_Layer: 0
   m_Name: Floating Island (1)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -7521,7 +7521,7 @@ GameObject:
   - component: {fileID: 1365366655}
   m_Layer: 0
   m_Name: Moving Platform
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9030,7 +9030,7 @@ GameObject:
   - component: {fileID: 1634384915}
   m_Layer: 0
   m_Name: Moving Platform (2)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9594,7 +9594,7 @@ GameObject:
   - component: {fileID: 1721670571}
   m_Layer: 0
   m_Name: Floating Island (3)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -11623,7 +11623,7 @@ GameObject:
   - component: {fileID: 2056244910}
   m_Layer: 0
   m_Name: Moving Platform (1)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
