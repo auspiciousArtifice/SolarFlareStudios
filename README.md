@@ -15,4 +15,4 @@ For the alpha, pressing 'H' will change the scene so the player is next to an AI
 There are some known bugs with the alpha.
 If pulled to close to hookable object, then the player loses gravity.
 After releasing the grappling hook, the player only retain velocity in the y direction.
-Currently, restarting the game and respawning does not work.
+Currently, restarting the game does not work.
