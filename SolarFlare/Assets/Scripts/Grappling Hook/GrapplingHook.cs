@@ -65,7 +65,7 @@ public class GrapplingHook : MonoBehaviour
         {
             if (swinging)
             {
-                playerRB.AddForce(swingingVelocity * 100 * Time.deltaTime, ForceMode.Impulse);
+                playerRB.AddForce(swingingVelocity, ForceMode.VelocityChange);
             }
             ReturnHook();
         }
