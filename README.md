@@ -8,6 +8,6 @@ Pressing escape will pause the game. For now, pressing backspace will show a win
 
 There will be multiple ways to reach the end of the level. It is up to you to figure out how to get there. There is a timer, so the longer you take, the worse performance will be. Additionaly, there are coins to collect that will help boost your score.
 
-As you travel the level, there will be variety of challenge beyond the basic challenge of swinging. For example, there are moving platforms, and tight gaps to swing through. Additionally, there are enemies that will attempt to kill you.
+As you travel the level, there will be variety of challenges beyond the basic challenge of swinging. For example, there are moving platforms, and tight gaps to swing through. Additionally, there are enemies that will attempt to kill you.
 
 For the alpha, pressing 'H' will change the scene so the player next to the AI enemy.
