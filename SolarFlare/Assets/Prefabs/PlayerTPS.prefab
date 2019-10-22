@@ -142,7 +142,7 @@ MonoBehaviour:
   Drag: {x: 0, y: 0, z: 0}
   hitGroundAudio: {fileID: 8300000, guid: b90de64e43c6d4445a71e6b0ca249673, type: 3}
   forwardInputFilter: 5
-  turnInputFilter: 5
+  turnInputFilter: 30
 --- !u!136 &563214324
 CapsuleCollider:
   m_ObjectHideFlags: 0
