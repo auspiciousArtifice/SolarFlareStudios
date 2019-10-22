@@ -10,4 +10,4 @@ There will be multiple ways to reach the end of the level. It is up to you to fi
 
 As you travel the level, there will be variety of challenges beyond the basic challenge of swinging. For example, there are moving platforms, and tight gaps to swing through. Additionally, there are enemies that will attempt to kill you.
 
-For the alpha, pressing 'H' will change the scene so the player next to the AI enemy.
+For the alpha, pressing 'H' will change the scene so the player is next to an AI enemy.
