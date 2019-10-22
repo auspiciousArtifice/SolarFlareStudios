@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4102004513170127929}
   - component: {fileID: -2917718155690935460}
   - component: {fileID: 2563174427308181678}
+  - component: {fileID: -990250412676295145}
   m_Layer: 10
   m_Name: PlayerTPS
   m_TagString: Player
@@ -283,6 +284,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-990250412676295145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667140777445833857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7786852ccd31d24f87f149bea635957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6502948460033952998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -350,11 +363,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 632773091212320093, guid: 79a80a037e8d0f84a87863b7871aaed7,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 8667140777445833857}
     - target: {fileID: 632773091212320094, guid: 79a80a037e8d0f84a87863b7871aaed7,
         type: 3}
       propertyPath: m_AngularDrag
@@ -365,6 +373,11 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 632773091212320093, guid: 79a80a037e8d0f84a87863b7871aaed7,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 8667140777445833857}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79a80a037e8d0f84a87863b7871aaed7, type: 3}
 --- !u!1 &5978267842646485137 stripped
