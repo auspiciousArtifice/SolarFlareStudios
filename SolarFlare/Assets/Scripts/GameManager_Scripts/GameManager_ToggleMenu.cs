@@ -17,10 +17,7 @@ namespace GameManager
 			{
 				Debug.LogWarning("Missing Pause Menu reference");
 			}
-			else
-			{
-				DontDestroyOnLoad(PauseMenu);
-			}
+            DontDestroyOnLoad(PauseMenu);
             Time.timeScale = 1;
             GameManager_Master.Instance.MenuToggleEvent += ToggleMenu;
 
@@ -48,7 +45,27 @@ namespace GameManager
         {
             if (PauseMenu != null)
             {
-				PauseMenu.SetActive(!PauseMenu.activeSelf);
+                //PauseMenu.SetActive(!PauseMenu.activeSelf);
+                CanvasGroup canvasGroup = PauseMenu.GetComponent<CanvasGroup>();
+                if (canvasGroup == null)
+                {
+                    Debug.LogWarning("Missing Pause Menu Canvas Group reference");
+                    return;
+                }
+                if (canvasGroup.interactable)
+                {
+                    canvasGroup.interactable = false;
+                    canvasGroup.blocksRaycasts = false;
+                    canvasGroup.alpha = 0f;
+                    Time.timeScale = 1f;
+                }
+                else
+                {
+                    canvasGroup.interactable = true;
+                    canvasGroup.blocksRaycasts = true;
+                    canvasGroup.alpha = 1f;
+                    Time.timeScale = 0f;
+                }
                 GameManager_Master.Instance.isMenuOn = !GameManager_Master.Instance.isMenuOn;
             }
             else
