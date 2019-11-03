@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
 
-    float levelTime = 200;
+    float levelTime;
+    float LEVEL_TOTAL_TIME = 200;
     float LEVEL_END_TIME = 0;
     int coinNum = 0;
     GameObject textObj;
@@ -24,6 +25,8 @@ public class UI_Manager : MonoBehaviour
         coinHud = GameObject.FindGameObjectWithTag("coin_hud");
         endScreen = GameObject.FindGameObjectWithTag("end_screen");
         character = GameObject.FindGameObjectWithTag("Player");
+
+        levelTime = LEVEL_TOTAL_TIME;
 
         if (textObj == null)
         {
@@ -47,12 +50,12 @@ public class UI_Manager : MonoBehaviour
         // makle the text updates
         if (textObj != null) textObj.GetComponent<Text>().text = message;
         if (timer != null) timer.GetComponent<Text>().text = ((int)levelTime).ToString();
-        if (character != null) coinNum = character.GetComponent<Coin_Counter>().getCoinCount();
+        if (character != null) coinNum = character.GetComponent<Coin_Counter>().getCoinCount() * 5;
         if (coinHud != null) coinHud.GetComponent<Text>().text = coinNum.ToString();
 
         endScreen.GetComponent<Text>().text =
             "Congratulations!!\n" +
-            "You won the game with " + coinNum + " coins and in " + ((int)levelTime) + " seconds.\n" +
+            "You won the game with score of " + finalScore() + ".\n" +
             "Try again to beat this score!";
 
         levelTime -= Time.deltaTime;
@@ -61,5 +64,12 @@ public class UI_Manager : MonoBehaviour
         {
             // restart level
         }
+    }
+
+    private string finalScore()
+    {
+        int timeScore = (int)levelTime;
+        int coinScore = character.GetComponent<Coin_Counter>().getCoinCount() * 5;
+        return "" + (timeScore + coinScore);
     }
 }
