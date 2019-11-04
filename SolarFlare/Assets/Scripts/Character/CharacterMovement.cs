@@ -36,6 +36,8 @@ public class CharacterMovement : MonoBehaviour
 
     //private int groundContactCount;
 
+    private bool turnBasedOnLook;
+
     private bool isGrounded;
 
     void Awake()
@@ -103,6 +105,8 @@ public class CharacterMovement : MonoBehaviour
     // Calculate move
     private void Move()
     {
+        turnBasedOnLook = false;
+
         float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
         float v = Input.GetAxisRaw("Vertical"); // setup v variables as our vertical input axis
 
@@ -119,6 +123,18 @@ public class CharacterMovement : MonoBehaviour
             m_rigidbody.AddForce(transform.forward * v * 10);
         }
         inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
+        float angle = Vector3.SignedAngle(transform.forward, mainCamera.transform.forward, Vector3.up); //Angle between player direction and camera direction.
+        if (inputForward > 0.5 && (angle > 10 || angle < -10))
+        {
+            turnBasedOnLook = true;
+            h = angle < 0 ? -1 : 1;
+
+            h = h * Mathf.Sqrt(1f - 0.5f * v * v);
+
+            inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
+
+
+        }
     }
 
 	private void Sprint()
@@ -212,8 +228,11 @@ public class CharacterMovement : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        m_animator.SetFloat("Forward", inputForward);
+
+
         m_animator.SetFloat("Turn", inputTurn);
+
+        m_animator.SetFloat("Forward", inputForward);
         m_animator.SetBool("Jump", m_jump);
         m_animator.SetBool("Dance", m_dance);
         m_animator.SetBool("Sprint", m_sprint);
