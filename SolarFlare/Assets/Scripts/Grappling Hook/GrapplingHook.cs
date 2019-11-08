@@ -32,6 +32,8 @@ public class GrapplingHook : MonoBehaviour
 
     private Transform originalParent;
 
+    private MouseAimCamera AimCamera;
+
     private void Start()
     {
         originalParent = hookHolder.transform.parent;
@@ -39,6 +41,7 @@ public class GrapplingHook : MonoBehaviour
         rope = hook.GetComponent<LineRenderer>();
         //m_controller = GetComponent<CharacterController>();
         mainCamera = Camera.main;
+        AimCamera = mainCamera.GetComponent<MouseAimCamera>();
         if (mainCamera == null)
         {
             Debug.LogWarning("No main camera");
@@ -53,7 +56,13 @@ public class GrapplingHook : MonoBehaviour
         {
             hookHolder.transform.parent = null; // Makes the hookHolder's position independent of any other game object.
             fired = true;
-            HookTrajectory = Vector3.Normalize(mainCamera.transform.forward);
+            if (AimCamera.hit.collider != null)
+            {
+                HookTrajectory = Vector3.Normalize(AimCamera.hit.collider.transform.position - hookHolder.transform.position);
+            } else
+            {
+                HookTrajectory = Vector3.Normalize(mainCamera.transform.forward);
+            }
         }
         else if (Input.GetMouseButtonDown(0) && fired && hooked && !swinging)
         {

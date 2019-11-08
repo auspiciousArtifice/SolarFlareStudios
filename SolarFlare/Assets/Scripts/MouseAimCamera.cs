@@ -31,7 +31,7 @@ public class MouseAimCamera : MonoBehaviour
     private Vector3 smoothPlayerPos;
 
     private float aimTargetDist;
-    private RaycastHit hit;
+    [HideInInspector] public RaycastHit hit;
 
     // Use this for initialization
     void Start()
@@ -133,9 +133,15 @@ public class MouseAimCamera : MonoBehaviour
 
         if (Time.time != 0 && Time.timeScale != 0)
         {
-            if (aimTargetDist < 20 && hit.collider.tag.Equals("Hookable"))
+            if (hit.collider != null)
             {
-                GUI.DrawTexture(new Rect(Screen.width / 2 - (hookableCrosshair.width * 0.5f), Screen.height / 2 - (hookableCrosshair.height * 0.5f) + 35, hookableCrosshair.width, hookableCrosshair.height), hookableCrosshair);
+                if (aimTargetDist < 20 && hit.collider.tag.Equals("Hookable"))
+                {
+                    GUI.DrawTexture(new Rect(Screen.width / 2 - (hookableCrosshair.width * 0.5f), Screen.height / 2 - (hookableCrosshair.height * 0.5f) + 35, hookableCrosshair.width, hookableCrosshair.height), hookableCrosshair);
+                } else
+                {
+                    GUI.DrawTexture(new Rect(Screen.width / 2 - (defaultCrosshair.width * 0.5f), Screen.height / 2 - (defaultCrosshair.height * 0.5f) + 35, defaultCrosshair.width, defaultCrosshair.height), defaultCrosshair);
+                }
             }
             else
             {
