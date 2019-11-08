@@ -15,7 +15,7 @@ public class HookDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Hookable")
+        if (other.tag.Equals("Hookable"))
         {
             grapplingHook.hooked = true;
             grapplingHook.hookedObj = other.gameObject;
