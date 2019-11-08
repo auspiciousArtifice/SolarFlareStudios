@@ -29,6 +29,7 @@ public class CharacterMovement : MonoBehaviour
     private bool m_dance;
     private bool m_dash;
 	private bool m_sprint;
+    private bool m_swingSword;
     private float inputForward = 0f;
     private float inputTurn = 0f;
 
@@ -91,6 +92,7 @@ public class CharacterMovement : MonoBehaviour
         Jump();
         Dash();
 		Sprint();
+        SwingSword();
         
         //Rotate();
         //Dance();
@@ -163,6 +165,18 @@ public class CharacterMovement : MonoBehaviour
 			m_sprint = false;
 		}
 	}
+
+    private void SwingSword()
+    {
+        if (Input.GetButtonDown("SwingSword"))
+        {
+            m_swingSword = true;
+        }
+        else if (Input.GetButtonUp("SwingSword"))
+        {
+            m_swingSword = false;
+        }
+    }
 
     // Apply rotation
     private void Rotate()
@@ -250,6 +264,7 @@ public class CharacterMovement : MonoBehaviour
         m_animator.SetBool("Dance", m_dance);
         m_animator.SetBool("Sprint", m_sprint);
         m_animator.SetBool("Dash", m_dash);
+        m_animator.SetBool("SwingSword", m_swingSword);
         //m_animator.speed = animationSpeed;
     }
 
