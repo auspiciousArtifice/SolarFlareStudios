@@ -5,7 +5,8 @@ using UnityEngine;
 public class MouseAimCamera : MonoBehaviour
 {
     public Transform player;
-    public Texture crosshair; // crosshair - removed it for quick and easy setup. ben0bi
+    public Texture defaultCrosshair; // crosshair - removed it for quick and easy setup. ben0bi
+    public Texture hookableCrosshair;
     // if you add the crosshair, you need to drag a crosshair texture on the "crosshair" variable in the inspector
 
     protected Transform aimTarget; // that was public and a gameobject had to be dragged on it. - ben0bi
@@ -28,6 +29,9 @@ public class MouseAimCamera : MonoBehaviour
     private float maxCamDist = 1;
     private LayerMask mask;
     private Vector3 smoothPlayerPos;
+
+    private float aimTargetDist;
+    [HideInInspector] public RaycastHit hit;
 
     // Use this for initialization
     void Start()
@@ -88,18 +92,19 @@ public class MouseAimCamera : MonoBehaviour
 
         // Make sure camera doesn't intersect geometry
         // Move camera towards closeOffset if ray back towards camera position intersects something
-        RaycastHit hit;
+        RaycastHit closeHit;
         Vector3 closeToFarDir = (farCamPoint - closeCamPoint) / farDist;
         float padding = 0.3f;
-        if (Physics.Raycast(closeCamPoint, closeToFarDir, out hit, maxCamDist + padding, mask))
+        if (Physics.Raycast(closeCamPoint, closeToFarDir, out closeHit, maxCamDist + padding, mask))
         {
-            maxCamDist = hit.distance - padding;
+            maxCamDist = closeHit.distance - padding;
         }
         cam.position = closeCamPoint + closeToFarDir * maxCamDist;
 
         // Do a raycast from the camera to find the distance to the point we're aiming at.
-        float aimTargetDist;
-        if (Physics.Raycast(cam.position, cam.forward, out hit, 100, mask))
+        aimTargetDist = 0;
+        Vector3 lowerForward = new Vector3(cam.forward.x, cam.forward.y - 0.1f, cam.forward.z);
+        if (Physics.Raycast(cam.position, lowerForward, out hit, 100, mask))
         {
             aimTargetDist = hit.distance + 0.05f;
         }
@@ -125,8 +130,24 @@ public class MouseAimCamera : MonoBehaviour
     
     void OnGUI ()
     {
+
         if (Time.time != 0 && Time.timeScale != 0)
-            GUI.DrawTexture(new Rect(Screen.width/2-(crosshair.width*0.5f), Screen.height/2-(crosshair.height*0.5f)+20, crosshair.width, crosshair.height), crosshair);
+        {
+            if (hit.collider != null)
+            {
+                if (aimTargetDist < 20 && hit.collider.tag.Equals("Hookable"))
+                {
+                    GUI.DrawTexture(new Rect(Screen.width / 2 - (hookableCrosshair.width * 0.5f), Screen.height / 2 - (hookableCrosshair.height * 0.5f) + 35, hookableCrosshair.width, hookableCrosshair.height), hookableCrosshair);
+                } else
+                {
+                    GUI.DrawTexture(new Rect(Screen.width / 2 - (defaultCrosshair.width * 0.5f), Screen.height / 2 - (defaultCrosshair.height * 0.5f) + 35, defaultCrosshair.width, defaultCrosshair.height), defaultCrosshair);
+                }
+            }
+            else
+            {
+                GUI.DrawTexture(new Rect(Screen.width / 2 - (defaultCrosshair.width * 0.5f), Screen.height / 2 - (defaultCrosshair.height * 0.5f) + 35, defaultCrosshair.width, defaultCrosshair.height), defaultCrosshair);
+            }
+        }
     }
     
 }
