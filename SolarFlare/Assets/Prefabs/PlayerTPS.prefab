@@ -99,13 +99,13 @@ Rigidbody:
   m_GameObject: {fileID: 8667140777445833857}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_Drag: 0.25
+  m_AngularDrag: 0.5
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!114 &8667140777445833862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,11 +121,13 @@ MonoBehaviour:
   hook: {fileID: 5978267841720062372}
   hookHolder: {fileID: 5978267842646485137}
   hand: {fileID: 6407022768308884915}
-  hookTravelSpeed: 15
-  playerTravelSpeed: 20
+  player: {fileID: 8667140777445833857}
+  hookTravelSpeed: 25
+  playerTravelSpeed: 15
   maxDistance: 20
   hooked: 0
   hookedObj: {fileID: 0}
+  pullVector: {x: 0, y: 0, z: 0}
 --- !u!114 &8667140777445833859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,8 +143,10 @@ MonoBehaviour:
   DashDistance: 10
   Drag: {x: 0, y: 0, z: 0}
   hitGroundAudio: {fileID: 8300000, guid: b90de64e43c6d4445a71e6b0ca249673, type: 3}
+  air_animator: {fileID: 9100000, guid: 8875291ae25824f2a90b927de4df1a37, type: 2}
   forwardInputFilter: 5
   turnInputFilter: 30
+  airbornSpeedMult: 10
 --- !u!136 &563214324
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -373,6 +377,11 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 632773091212320092, guid: 79a80a037e8d0f84a87863b7871aaed7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a9e6cf91cbfc1a4fbc9470cca37b97a, type: 2}
     - target: {fileID: 632773091212320093, guid: 79a80a037e8d0f84a87863b7871aaed7,
         type: 3}
       propertyPath: player
@@ -405,6 +414,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8667140777445833856}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: f6eed04e247e56342918693c6c96d393,
+        type: 3}
+      propertyPath: m_Name
+      value: knight_d_pelegrini@T-Pose
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f6eed04e247e56342918693c6c96d393,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -459,11 +473,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f6eed04e247e56342918693c6c96d393,
-        type: 3}
-      propertyPath: m_Name
-      value: knight_d_pelegrini@T-Pose
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6eed04e247e56342918693c6c96d393, type: 3}

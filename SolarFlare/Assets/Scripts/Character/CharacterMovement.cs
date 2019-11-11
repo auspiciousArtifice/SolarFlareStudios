@@ -15,6 +15,8 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody m_rigidbody;
     private Collider m_collider;
     private Animator m_animator;
+    private RuntimeAnimatorController ground_animator;
+    public RuntimeAnimatorController air_animator;
 
     private Transform leftFoot;
     private Transform rightFoot;
@@ -34,6 +36,7 @@ public class CharacterMovement : MonoBehaviour
     public float forwardInputFilter = 5f;
     public float turnInputFilter = 5f;
     private float forwardSpeedLimit = 1f;
+    public float airbornSpeedMult = 5f;
 
     //private int groundContactCount;
 
@@ -46,6 +49,7 @@ public class CharacterMovement : MonoBehaviour
         m_animator = GetComponent<Animator>();
         if (m_animator == null)
             Debug.Log("Animator could not be found");
+        ground_animator = m_animator.runtimeAnimatorController;
 
         m_rigidbody = GetComponent<Rigidbody>();
         if (m_rigidbody == null)
@@ -111,30 +115,41 @@ public class CharacterMovement : MonoBehaviour
 
         float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
         float v = Input.GetAxisRaw("Vertical"); // setup v variables as our vertical input axis
-
+        h *= Mathf.Sqrt(1f - 0.5f * v * v);
+        v *= Mathf.Sqrt(1f - 0.5f * h * h);
         if (isGrounded)
         {
-            h = h * Mathf.Sqrt(1f - 0.5f * v * v);
-            v = v * Mathf.Sqrt(1f - 0.5f * h * h);
-
             inputForward = Mathf.Clamp(Mathf.Lerp(inputForward, v,
                 Time.deltaTime * forwardInputFilter), -forwardSpeedLimit, forwardSpeedLimit);
         }
+        else if (GrapplingHook.swinging)
+        {
+            m_rigidbody.AddRelativeForce(v * m_rigidbody.transform.forward.normalized * airbornSpeedMult);
+            //m_rigidbody.transform.Rotate(0, h * Time.deltaTime * turnInputFilter, 0, Space.Self);
+        }
         else
         {
-            m_rigidbody.AddForce(transform.forward * v * 10);
+            m_rigidbody.AddRelativeForce(new Vector3(h, 0, v).normalized * airbornSpeedMult);
+            //m_rigidbody.AddForce(new Vector3(v, 0, -h).normalized * 5f);
         }
-        inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
-        float angle = Vector3.SignedAngle(transform.forward, mainCamera.transform.forward, Vector3.up); //Angle between player direction and camera direction.
-        if (inputForward > 0.5 && (angle > 10 || angle < -10))
+        if (isGrounded)
         {
-            turnBasedOnLook = true;
-            h = angle < 0 ? -1 : 1;
-
-            h = h * Mathf.Sqrt(1f - 0.5f * v * v);
-
             inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
+            float angle = Vector3.SignedAngle(transform.forward, mainCamera.transform.forward, Vector3.up); //Angle between player direction and camera direction.
+            if (inputForward > 0.5 && (angle > 10 || angle < -10))
+            {
+                turnBasedOnLook = true;
+                h = angle < 0 ? -1 : 1;
 
+                h = h * Mathf.Sqrt(1f - 0.5f * v * v);
+
+                inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
+
+
+            }
+        }
+        else if (!isGrounded && !GrapplingHook.swinging)
+        {
 
         }
     }
@@ -194,8 +209,8 @@ public class CharacterMovement : MonoBehaviour
             Debug.Log("Dash");
 
             dashDirection = mainCamera.transform.forward.normalized;
-            dashDirection.Scale(new Vector3(5, .5f, 5));
-            m_rigidbody.AddForce(dashDirection * 100, ForceMode.Impulse);
+            dashDirection.Scale(new Vector3(5, 5f, 5));
+            m_rigidbody.AddForce(dashDirection * 5, ForceMode.Impulse);
             //m_rigidbody.MovePosition(Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
                                        //(Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime))));
             m_dash = true;
@@ -242,8 +257,6 @@ public class CharacterMovement : MonoBehaviour
 
     private void UpdateAnimator()
     {
-
-
         m_animator.SetFloat("Turn", inputTurn);
 
         m_animator.SetFloat("Forward", inputForward);
@@ -259,6 +272,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "ground")
         {
+            m_animator.runtimeAnimatorController = ground_animator;
+            m_animator.applyRootMotion = true;
             isGrounded = true;
             m_jump = false;
             m_dash = false;
@@ -279,6 +294,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "ground")
         {
+            m_animator.runtimeAnimatorController = air_animator;
+            m_animator.applyRootMotion = false;
             isGrounded = false;
         }
     }
