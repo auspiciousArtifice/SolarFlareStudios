@@ -8,7 +8,7 @@ public class Instructions_UI : MonoBehaviour
 {
     float levelTime;
     float instructionTime;
-    float LEVEL_TOTAL_TIME = 200;
+    float LEVEL_TOTAL_TIME = 65;
     int coinNum = 0;
     bool runTimer = false;
     GameObject textObj;
