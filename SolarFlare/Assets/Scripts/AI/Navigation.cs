@@ -17,8 +17,9 @@ public class Navigation : MonoBehaviour
 	/// If we should be patrolling, which points should we patrol between
 	/// </summary>
 	public List<GameObject> patrolSpots = new List<GameObject>();
-
+	public float multiplyBy;
 	public int maxAI = 1;
+
 	private int healthAI;
 
 	/// <summary>
@@ -56,6 +57,8 @@ public class Navigation : MonoBehaviour
 	/// </summary>
 	private bool seekingPlayer = false;
 
+	private bool runningAway = false;
+
 	//animator variables
 	private Animator animator;
 	private bool attack;
@@ -89,16 +92,25 @@ public class Navigation : MonoBehaviour
 		if (CanMove())
 		{
 			//If the player gets too close, attack!
-			if (Vector3.Distance(myTransform.position, player.transform.position) < 10)
+			if (maxAI > 1 && healthAI <= maxAI / 2 && Vector3.Distance(myTransform.position, player.transform.position) < 10)
+			{
+				runningAway = true;
+				seekingPlayer = false;
+				seekingPatrol = false;
+				RunFrom(player.transform);
+			}
+			else if (Vector3.Distance(myTransform.position, player.transform.position) < 10)
 			{
 				seekingPlayer = true;
 				seekingPatrol = false;
+				runningAway = false;
 				Seek(player.transform);
 			}
 			//if the player moved too far away, return to nearest patrol point
 			else if (seekingPlayer && Vector3.Distance(myTransform.position, player.transform.position) >= 10)
 			{
 				seekingPlayer = false;
+				runningAway = false;
 				float closestDist = 999999999;
 				for (int i = 0; i < patrolSpots.Count; i++)
 				{
@@ -112,7 +124,7 @@ public class Navigation : MonoBehaviour
 			}
 			if (patrol)
 			{
-				if (!seekingPatrol && !seekingPlayer)
+				if (!seekingPatrol && !seekingPlayer && !runningAway)
 				{
 					curDest = patrolSpots[patrolIndex % patrolSpots.Count].GetComponent<Transform>();
 					patrolIndex++;
@@ -128,6 +140,7 @@ public class Navigation : MonoBehaviour
 		Debug.Log(seekingPlayer);
 		animator.SetBool("Seeking", seekingPlayer);
 		animator.SetBool("Patrol", seekingPatrol);
+		animator.SetBool("RunningAway", runningAway);
 		animator.SetBool("Attack", attack);
 	}
 
@@ -157,6 +170,18 @@ public class Navigation : MonoBehaviour
 		{
 			attack = false;
 		}
+	}
+
+	public void RunFrom(Transform playerPos)
+	{
+		transform.rotation = Quaternion.LookRotation(transform.position - playerPos.position);
+
+		Vector3 runTo = transform.position + transform.forward * multiplyBy;
+
+		NavMeshHit hit;
+		NavMesh.SamplePosition(runTo, out hit, 5, 1 << NavMesh.GetAreaFromName("Default"));
+
+		agent.SetDestination(hit.position);
 	}
 
 	private void OnTriggerEnter(Collider other)
