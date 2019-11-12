@@ -178,12 +178,9 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    private void DamageEnemy()  //ask Isabelle what she wants here
+    private bool isSwingingSword()
     {
-        if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.SwordSwing"))
-        {
-
-        }
+        return m_animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.SwordSwing");
     }
 
     // Apply rotation
