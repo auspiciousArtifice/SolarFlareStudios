@@ -8382,8 +8382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  defaultCrosshair: {fileID: 2800000, guid: a30726c95e0997449a3435228e42e9d2, type: 3}
-  hookableCrosshair: {fileID: 2800000, guid: 3d509a0bd14198f48a6206be91c95cfc, type: 3}
+  defaultCrosshair: {fileID: 2800000, guid: e562c0febb88797409f7449ca0dcd97d, type: 3}
+  hookableCrosshair: {fileID: 2800000, guid: 72f88048b91c963438c12cea1e2053f6, type: 3}
   smoothingTime: 10
   pivotOffset: {x: 0.5, y: 0.7, z: 0}
   camOffset: {x: 0, y: 2, z: -5}
