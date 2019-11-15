@@ -147,6 +147,8 @@ MonoBehaviour:
   forwardInputFilter: 5
   turnInputFilter: 30
   airbornSpeedMult: 10
+  buttonObject: {fileID: 5253948092795913342, guid: 300d1d9bd58129f409780df30602b694,
+    type: 3}
 --- !u!136 &563214324
 CapsuleCollider:
   m_ObjectHideFlags: 0

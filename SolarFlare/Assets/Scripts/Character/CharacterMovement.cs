@@ -30,6 +30,7 @@ public class CharacterMovement : MonoBehaviour
     private bool m_dash;
 	private bool m_sprint;
     private bool m_swingSword;
+    private bool m_pushButton;
     private float inputForward = 0f;
     private float inputTurn = 0f;
 
@@ -43,6 +44,8 @@ public class CharacterMovement : MonoBehaviour
     private bool turnBasedOnLook;
 
     private bool isGrounded;
+
+    public GameObject buttonObject;
 
     void Awake()
     {
@@ -93,6 +96,7 @@ public class CharacterMovement : MonoBehaviour
         Dash();
 		Sprint();
         SwingSword();
+        PushButton();
         
         //Rotate();
         //Dance();
@@ -165,6 +169,18 @@ public class CharacterMovement : MonoBehaviour
 			m_sprint = false;
 		}
 	}
+
+    private void PushButton()
+    {
+        if (Input.GetButtonDown("PushButton"))
+        {
+            m_pushButton = true;
+        }
+        else if (Input.GetButtonUp("PushButton"))
+        {
+            m_pushButton = false;
+        }
+    }
 
     private void SwingSword()
     {
@@ -270,6 +286,7 @@ public class CharacterMovement : MonoBehaviour
         m_animator.SetBool("Sprint", m_sprint);
         m_animator.SetBool("Dash", m_dash);
         m_animator.SetBool("SwingSword", m_swingSword);
+        m_animator.SetBool("BridgeButtonPressed", m_pushButton);
         //m_animator.speed = animationSpeed;
     }
 
