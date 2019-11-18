@@ -60,7 +60,7 @@ public class GrapplingHook : MonoBehaviour
             HookTrajectory = Vector3.Normalize(mainCamera.transform.forward);
             if (AimCamera.hit.collider != null)
             {
-                HookTrajectory = Vector3.Normalize(AimCamera.hit.collider.transform.position - hookHolder.transform.position);
+                HookTrajectory = Vector3.Normalize(AimCamera.hit.collider.transform.gameObject.transform.position - hookHolder.transform.position);
             } else
             {
                 HookTrajectory = Vector3.Normalize(mainCamera.transform.forward);
