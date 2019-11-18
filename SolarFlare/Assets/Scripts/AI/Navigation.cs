@@ -10,8 +10,9 @@ public class Navigation : MonoBehaviour
 {
 	/// <summary>
 	/// Should we be doing patrolling behavior
+    /// Defaulting to true bc else will automatically throw errors when prefab placed.
 	/// </summary>
-	public bool patrol = true;
+	public bool patrol = false;
 
 	/// <summary>
 	/// If we should be patrolling, which points should we patrol between
@@ -115,14 +116,14 @@ public class Navigation : MonoBehaviour
 				for (int i = 0; i < patrolSpots.Count; i++)
 				{
 					float curDist = Vector3.Distance(myTransform.position, patrolSpots[i].transform.position);
-					if (curDist < closestDist)
+                    if (curDist < closestDist)
 					{
 						closestDist = curDist;
 						patrolIndex = i;
 					}
 				}
-			}
-			if (patrol)
+            }
+            if (patrol)
 			{
 				if (!seekingPatrol && !seekingPlayer && !runningAway)
 				{
@@ -131,7 +132,8 @@ public class Navigation : MonoBehaviour
 					Seek(curDest);
 					seekingPatrol = true;
 				}
-				else if (Vector3.Distance(myTransform.position, curDest.position) < 6)
+				else if (Vector3.Distance(myTransform.position, curDest.position) < 2) 
+                    // less because it was getting stuck in middle of small platforms
 				{
 					seekingPatrol = false;
 				}

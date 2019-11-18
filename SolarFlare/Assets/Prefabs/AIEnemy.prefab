@@ -471,12 +471,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04ac6919e2708e4ba5c9930b2d70eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol: 1
+  patrol: 0
   patrolSpots:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  healthAI: 1
+  multiplyBy: 0
+  maxAI: 1
 --- !u!114 &2342876637801401068
 MonoBehaviour:
   m_ObjectHideFlags: 0
