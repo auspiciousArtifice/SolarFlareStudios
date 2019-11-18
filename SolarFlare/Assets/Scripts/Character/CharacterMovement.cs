@@ -286,7 +286,7 @@ public class CharacterMovement : MonoBehaviour
             Debug.Log("sound played");
         } else
         {
-            Debug.Log("ground sound is probably borken");
+           //Debug.Log("ground sound is probably borken");
         }
     }
 

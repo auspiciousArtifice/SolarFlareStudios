@@ -139,7 +139,7 @@ public class Navigation : MonoBehaviour
 				}
 			}
 		}
-		Debug.Log(seekingPlayer);
+		//Debug.Log(seekingPlayer);
 		animator.SetBool("Seeking", seekingPlayer);
 		animator.SetBool("Patrol", seekingPatrol);
 		animator.SetBool("RunningAway", runningAway);
@@ -166,8 +166,8 @@ public class Navigation : MonoBehaviour
 		agent.destination = destination.position;
 		if (Vector3.Distance(myTransform.position, player.transform.position) < 2)
 		{
-			attack = true;
-		}
+			attack = true; 
+        }
 		else
 		{
 			attack = false;
@@ -188,8 +188,8 @@ public class Navigation : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		// If the entering collider is the player OR in our case the sword
-		/*if (other.gameObject == player)
+        // If the entering collider is the player OR in our case the sword
+        /*if (other.gameObject == player)
 		{
 			PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
 			if (playerMovement)
@@ -207,20 +207,23 @@ public class Navigation : MonoBehaviour
 					else
 					{
 						animator.SetTrigger("Damaged");
+                        ExecuteDamageEvent();
 						healthAI--;
 					}
 				}
 			}
 		}*/
+    }
+
+    public void ExecuteAttackSound()
+	{
+		EventManager.TriggerEvent<EnemyAttackEvent, Vector3>(transform.position);
 	}
 
-	/*public void ExecuteAttackSound()
+    
+	public void ExecuteDamageEvent()
 	{
-		EventManager.TriggerEvent<attackSoundEvent, Vector3>(transform.position);
-	}
-
-	public void ExecuteDamageSound()
-	{
-		EventManager.TriggerEvent<damageSoundEvent, Vector3>(transform.position);
-	}*/
+		EventManager.TriggerEvent<EnemyDamageEvent, Vector3>(transform.position);
+        GameObject.FindGameObjectWithTag("score").GetComponent<Score_Tracker>().incrementScoreBy(10);    
+    }
 }
