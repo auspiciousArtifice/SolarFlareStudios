@@ -16,6 +16,7 @@ TagManager:
   - end_screen
   - coin_hud
   - PickUp
+  - DeathFloor
   layers:
   - Default
   - TransparentFX
