@@ -12,6 +12,7 @@ public class EventSound3D : MonoBehaviour
     void Awake()
     {
         audioSrc = GetComponent<AudioSource>();
+        DontDestroyOnLoad(this.gameObject);
     }
 
 

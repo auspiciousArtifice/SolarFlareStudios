@@ -7,17 +7,6 @@ public class Score_Tracker : MonoBehaviour
     // Start is called before the first frame update
     private int score = 0;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void incrementScoreBy(int amt)
     {
         score += amt;
@@ -32,4 +21,12 @@ public class Score_Tracker : MonoBehaviour
     {
         return score;
     }
+
+    public int finalScore()
+     {
+        this.decrementScoreBy(0);
+        return score;
+     }
+
+
 }

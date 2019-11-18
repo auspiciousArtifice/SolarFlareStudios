@@ -8,8 +8,8 @@ public class UI_Manager : MonoBehaviour
 
     float levelTime;
     float LEVEL_TOTAL_TIME = 200;
-    float LEVEL_END_TIME = 0;
-    int coinNum = 0;
+
+    public bool debug;
 
     GameObject textObj;
     GameObject timer;
@@ -22,6 +22,7 @@ public class UI_Manager : MonoBehaviour
 
     void Start()
     {
+        debug = true;
         score = GameObject.FindGameObjectWithTag("score");
         textObj = GameObject.FindGameObjectWithTag("Notifications");
         timer = GameObject.FindGameObjectWithTag("timer");
@@ -47,27 +48,24 @@ public class UI_Manager : MonoBehaviour
         coinHud = GameObject.FindGameObjectWithTag("coin_hud");
         endScreen = GameObject.FindGameObjectWithTag("end_screen");
         character = GameObject.FindGameObjectWithTag("Player");
-        
-        string message = character.gameObject.GetComponent<Rigidbody>().velocity.ToString();
+
+        string message = "";
+        if (character != null && debug) message = character.gameObject.GetComponent<Rigidbody>().velocity.ToString();
         
 
         // makle the text updates
         if (textObj != null) textObj.GetComponent<Text>().text = message;
-        if (timer != null) timer.GetComponent<Text>().text = ((int)levelTime).ToString();
-        if (coinHud != null) coinHud.GetComponent<Text>().text = score.GetComponent<Score_Tracker>().getScore().ToString();
+        if (timer != null) timer.GetComponent<Text>().text = "Time Remaining : " + ((int)levelTime).ToString();
+        if (coinHud != null) coinHud.GetComponent<Text>().text = "Score : " + score.GetComponent<Score_Tracker>().getScore().ToString();
+
+        int finalScore = score.GetComponent<Score_Tracker>().getScore() + (int)levelTime;
 
         endScreen.GetComponent<Text>().text =
             "Congratulations!!\n" +
-            "You won the game with score of " + score.GetComponent<Score_Tracker>().getScore() + ".\n" +
+            "You won the game with score of " + finalScore + ".\n" +
             "Try again to beat this score!";
 
-        int oldLevelTime = (int) levelTime;
         levelTime -= Time.deltaTime;
-        score.GetComponent<Score_Tracker>().decrementScoreBy(oldLevelTime - (int)levelTime);
 
-        if (levelTime < LEVEL_END_TIME)
-        {
-            // restart level
-        }
     }
 }
