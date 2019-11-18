@@ -20,6 +20,8 @@ public class GrapplingHook : MonoBehaviour
 
     private Rigidbody playerRB;
 
+    private bool rappelling;
+    private bool rappelDown;
     private float currentDistance;
     private float distanceToHook;
     private Camera mainCamera;
@@ -84,16 +86,21 @@ public class GrapplingHook : MonoBehaviour
             }
             ReturnHook();
         }
-
-        if (!hooked && !fired)
+        else if (Input.GetButtonDown("RappelDown") && swinging)
         {
-            Quaternion q = Quaternion.FromToRotation(playerRB.transform.up, Vector3.up) * playerRB.transform.rotation;
-            playerRB.transform.rotation = Quaternion.Slerp(playerRB.transform.rotation, q, Time.deltaTime * 5f);
+            rappelling = true;
+            rappelDown = true;
         }
-        else if (hooked && fired && !swinging)
+        else if (Input.GetButtonDown("RappelUp") && swinging)
         {
-            Quaternion q = Quaternion.FromToRotation(playerRB.transform.up, HookTrajectory) * playerRB.transform.rotation;
-            playerRB.transform.rotation = Quaternion.Slerp(playerRB.transform.rotation, q, Time.deltaTime * 15f);
+            rappelling = true;
+            rappelDown = false;
+        }
+        else if ((Input.GetButtonUp("RappelDown") || Input.GetButtonUp("RappelUp")) && swinging)
+        {
+            rappelling = false;
+            hookedObj.GetComponent<ConfigurableJoint>().connectedBody = null;
+            hookedObj.GetComponent<ConfigurableJoint>().connectedBody = playerRB;
         }
     }
 
@@ -126,8 +133,23 @@ public class GrapplingHook : MonoBehaviour
             playerRB.MovePosition(Vector3.MoveTowards(transform.position, hook.transform.position, Time.deltaTime * playerTravelSpeed));
             //playerRB.MoveRotation(Quaternion.LookRotation(playerRB.transform.forward, hook.transform.position - playerRB.transform.position));
             distanceToHook = Mathf.Abs(Vector3.Distance(hand.transform.position, hook.transform.position));
+            Quaternion q = Quaternion.FromToRotation(playerRB.transform.up, HookTrajectory) * playerRB.transform.rotation;
+            playerRB.transform.rotation = Quaternion.Slerp(playerRB.transform.rotation, q, Time.deltaTime * 15f);
 
             playerRB.useGravity = false;
+        }
+
+        if (rappelling)
+        {
+            hookedObj.GetComponent<ConfigurableJoint>().yMotion = ConfigurableJointMotion.Free;
+            if (!rappelDown)
+            {
+                playerRB.AddForce(-Physics.gravity * 2, ForceMode.Acceleration);
+            }
+        }
+        else
+        {
+            hookedObj.GetComponent<ConfigurableJoint>().yMotion = ConfigurableJointMotion.Locked;
         }
 
         if (!hooked && !fired)
@@ -136,6 +158,8 @@ public class GrapplingHook : MonoBehaviour
             hook.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             hook.transform.rotation = hookHolder.transform.rotation;
             hook.transform.position = hookHolder.transform.position;
+            Quaternion q = Quaternion.FromToRotation(playerRB.transform.up, Vector3.up) * playerRB.transform.rotation;
+            playerRB.transform.rotation = Quaternion.Slerp(playerRB.transform.rotation, q, Time.deltaTime * 5f);
         }
     }
 
