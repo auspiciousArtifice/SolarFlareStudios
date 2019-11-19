@@ -1136,15 +1136,15 @@ RectTransform:
   m_GameObject: {fileID: 791304599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 15203732}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -262, y: -164}
-  m_SizeDelta: {x: 450, y: 250}
+  m_AnchoredPosition: {x: -369, y: -137}
+  m_SizeDelta: {x: 450, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791304601
 MonoBehaviour:
@@ -1181,9 +1181,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Solar
 
-    Flare
-
-    Sutdios'
+    Flare'
 --- !u!222 &791304602
 CanvasRenderer:
   m_ObjectHideFlags: 0
