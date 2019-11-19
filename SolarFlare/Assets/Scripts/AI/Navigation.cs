@@ -64,6 +64,7 @@ public class Navigation : MonoBehaviour
 	private Animator animator;
 	private bool attack;
 	private bool died;
+    public float distanceToAttack = 2f;
 
 	// Start is called before the first frame update
 	void Start()
@@ -164,7 +165,7 @@ public class Navigation : MonoBehaviour
 	private void Seek(Transform destination)
 	{
 		agent.destination = destination.position;
-		if (Vector3.Distance(myTransform.position, player.transform.position) < 2)
+		if (Vector3.Distance(myTransform.position, player.transform.position) < distanceToAttack)
 		{
 			attack = true; 
         }

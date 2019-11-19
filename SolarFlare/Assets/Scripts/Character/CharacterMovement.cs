@@ -134,7 +134,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
-            m_rigidbody.AddRelativeForce(mainCamera.transform.forward.normalized * airbornSpeedMult);
+            m_rigidbody.AddForce(mainCamera.transform.forward.normalized * airbornSpeedMult);
             //m_rigidbody.AddForce(new Vector3(v, 0, -h).normalized * 5f);
         }
         if (isGrounded)
