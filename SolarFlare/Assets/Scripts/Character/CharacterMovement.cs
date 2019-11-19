@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator), typeof(Rigidbody))]
 public class CharacterMovement : MonoBehaviour
 {
-    public float DashDistance = 10f;
-    public Vector3 Drag = new Vector3(5f, 0f, 5f);
+    public float DashDistance;
+    public Vector3 Drag;
     public AudioClip hitGroundAudio;
     private AudioSource playerAudio;
 
@@ -34,10 +34,11 @@ public class CharacterMovement : MonoBehaviour
     private float inputForward = 0f;
     private float inputTurn = 0f;
 
-    public float forwardInputFilter = 5f;
-    public float turnInputFilter = 5f;
-    private float forwardSpeedLimit = 1f;
-    public float airbornSpeedMult = 5f;
+    public float forwardInputFilter;
+    public float turnInputFilter;
+    private float forwardSpeedLimit = 5f;
+    public float airbornSpeedMult;
+    public float swingingSpeedMult;
 
     //private int groundContactCount;
 
@@ -128,12 +129,12 @@ public class CharacterMovement : MonoBehaviour
         }
         else if (GrapplingHook.swinging)
         {
-            m_rigidbody.AddRelativeForce(v * m_rigidbody.transform.forward.normalized * airbornSpeedMult);
+            m_rigidbody.AddForce(v * mainCamera.transform.forward.normalized * swingingSpeedMult);
             //m_rigidbody.transform.Rotate(0, h * Time.deltaTime * turnInputFilter, 0, Space.Self);
         }
         else
         {
-            m_rigidbody.AddRelativeForce(new Vector3(h, 0, v).normalized * airbornSpeedMult);
+            m_rigidbody.AddRelativeForce(mainCamera.transform.forward.normalized * airbornSpeedMult);
             //m_rigidbody.AddForce(new Vector3(v, 0, -h).normalized * 5f);
         }
         if (isGrounded)
@@ -230,8 +231,7 @@ public class CharacterMovement : MonoBehaviour
             Debug.Log("Dash");
 
             dashDirection = mainCamera.transform.forward.normalized;
-            dashDirection.Scale(new Vector3(5, 5f, 5));
-            m_rigidbody.AddForce(dashDirection * 5, ForceMode.Impulse);
+            m_rigidbody.AddForce(dashDirection * DashDistance, ForceMode.Impulse);
             //m_rigidbody.MovePosition(Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
                                        //(Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime))));
             m_dash = true;

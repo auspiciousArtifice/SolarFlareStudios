@@ -146,7 +146,8 @@ MonoBehaviour:
   air_animator: {fileID: 9100000, guid: 8875291ae25824f2a90b927de4df1a37, type: 2}
   forwardInputFilter: 5
   turnInputFilter: 30
-  airbornSpeedMult: 10
+  airbornSpeedMult: 5
+  swingingSpeedMult: 10
   buttonObject: {fileID: 5253948092795913342, guid: 300d1d9bd58129f409780df30602b694,
     type: 3}
 --- !u!136 &563214324
@@ -194,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cashGrabAudio: {fileID: 8300000, guid: b888a6d882364c24a9685f17c01c3e93, type: 3}
+  score: {fileID: 0}
 --- !u!82 &2563174427308181678
 AudioSource:
   m_ObjectHideFlags: 0
