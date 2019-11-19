@@ -139,7 +139,7 @@ public class GrapplingHook : MonoBehaviour
             playerRB.useGravity = false;
         }
 
-        if (rappelling)
+        if (swinging && rappelling)
         {
             hookedObj.GetComponent<ConfigurableJoint>().yMotion = ConfigurableJointMotion.Free;
             if (!rappelDown)
@@ -147,7 +147,7 @@ public class GrapplingHook : MonoBehaviour
                 playerRB.AddForce(-Physics.gravity * 2, ForceMode.Acceleration);
             }
         }
-        else
+        else if (swinging && !rappelling)
         {
             hookedObj.GetComponent<ConfigurableJoint>().yMotion = ConfigurableJointMotion.Locked;
         }
