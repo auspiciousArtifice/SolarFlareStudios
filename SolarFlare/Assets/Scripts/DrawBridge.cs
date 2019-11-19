@@ -8,10 +8,14 @@ public class DrawBridge : MonoBehaviour
 
     public GameObject bridge;
     private Animator bridgeAnimator;
+    public GameObject player;
+    private Animator playerAnimator;
+    private bool pushingButton;
 
     void Start()
     {
         bridgeAnimator = bridge.GetComponent<Animator>();
+        playerAnimator = player.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -20,9 +24,36 @@ public class DrawBridge : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void IsPushingButton()
     {
-        Debug.Log("Bridge is drawing");
-        bridgeAnimator.SetBool("ButtonPressed", true);
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.ButtonPush"))
+        {
+            pushingButton = true;
+        }
+        else
+        {
+            pushingButton = false;
+        }
+    }
+
+   // private void OnCollisionEnter(Collision collision)
+   // {
+       // Debug.Log("Bridge is drawing");
+    //    if (pushingButton)
+     //   {
+            //bridgeAnimator.SetBool("ButtonPressed", true);
+    //    }
+       
+    //}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (pushingButton)
+        {
+            if (other.GetComponent<Collider>().tag == "Player")
+            {
+            bridgeAnimator.SetBool("ButtonPressed", true);
+            }
+        }
     }
 }
