@@ -6201,6 +6201,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5253948094096069941, guid: 300d1d9bd58129f409780df30602b694,
+        type: 3}
+      propertyPath: bridge
+      value: 
+      objectReference: {fileID: 1889717422}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 300d1d9bd58129f409780df30602b694, type: 3}
 --- !u!1 &741586583
@@ -9659,6 +9664,11 @@ PrefabInstance:
       propertyPath: patrolSpots.Array.data[2]
       value: 
       objectReference: {fileID: 1790631036}
+    - target: {fileID: 2342876637801401058, guid: 6c4f4815ad54c384694c571ed1ea9b87,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c4f4815ad54c384694c571ed1ea9b87, type: 3}
 --- !u!1 &1159209764
