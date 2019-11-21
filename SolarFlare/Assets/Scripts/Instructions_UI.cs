@@ -16,6 +16,8 @@ public class Instructions_UI : MonoBehaviour
     GameObject coinHud;
     GameObject[] coins;
     GameObject character;
+
+    public GameObject enemy;
     /*
     GameObject endScreen;
     */
@@ -43,10 +45,7 @@ public class Instructions_UI : MonoBehaviour
         coins = GameObject.FindGameObjectsWithTag("PickUp");
         levelTime = LEVEL_TOTAL_TIME;
         instructionTime = 0;
-        /*
-        endScreen = GameObject.FindGameObjectWithTag("end_screen");
-        */
-        Debug.Log(coins.Length);
+        enemy.SetActive(false);
         for (int i = 0; i < coins.Length; i++)
         {
             coins[i].SetActive(false);
@@ -64,14 +63,20 @@ public class Instructions_UI : MonoBehaviour
             case InstructionState.WelcomeInstruction :
                 if (instructionTime < 5)
                 {
-                    textObj.GetComponent<Text>().text = "Welcome to SolarFlare!";
+                    textObj.GetComponent<Text>().text = "Welcome to Solar Flare Studios!";
                 }
                 else if (instructionTime < 10)
                 {
-                    textObj.GetComponent<Text>().text = "This is a game where you race to the level endpoint before time runs out! " +
-                        "                              \nFirst we'll explain some quick instructions. Click to navigate the next screen.";
+                    textObj.GetComponent<Text>().text = "This is a game where you race to the level endpoint before time runs out!";
                     runTimer = true;
-                } else if (Input.GetMouseButtonDown(0))
+                }
+                else if (instructionTime < 20)
+                {
+                    textObj.GetComponent<Text>().text = "First we'll explain some quick instructions. When you're ready to move on, just click!";
+                    runTimer = true;
+                }
+                
+                if (Input.GetMouseButtonDown(0))
                 {
                     state = InstructionState.MoveCameraInstruction;
                 }
@@ -94,7 +99,7 @@ public class Instructions_UI : MonoBehaviour
                 break;
 
             case InstructionState.GrappleInstruction:
-                textObj.GetComponent<Text>().text = "Click to launch a grappling hook then click again to stop retracting and start swinging. A third click will release you.";
+                textObj.GetComponent<Text>().text = "Click to launch a grappling hook and click again to release yourself! Q and E will shorten your grapple hook.";
                 if (Input.GetMouseButtonDown(0))
                 {
                     state = InstructionState.CoinInstruction;
@@ -114,7 +119,8 @@ public class Instructions_UI : MonoBehaviour
                 break;
 
             case InstructionState.EvadeEnemiesInstruction :
-                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies";
+                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies.";
+                enemy.SetActive(true);
                 if (Input.GetMouseButtonDown(0))
                 {
                     state = InstructionState.ScoreInstruction;

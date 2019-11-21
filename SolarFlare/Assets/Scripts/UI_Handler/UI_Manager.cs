@@ -23,7 +23,7 @@ public class UI_Manager : MonoBehaviour
 
     void Start()
     {
-        debug = true;
+        debug = false;
         score = GameObject.FindGameObjectWithTag("score");
         textObj = GameObject.FindGameObjectWithTag("Notifications");
         timer = GameObject.FindGameObjectWithTag("timer");
