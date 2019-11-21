@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 namespace GameManager
 {
     public class GameManager_PlayerDied : MonoBehaviour
     {
-        public TextMeshProUGUI LivesUI;
+        public GameObject LivesUI;
 
         private void OnEnable()
         {
@@ -16,7 +17,7 @@ namespace GameManager
 
 			if (LivesUI == null)
 			{
-				Debug.LogWarning("missing UI reference");
+				Debug.LogWarning("missing UI reference for life");
 			}
 			else
 			{
@@ -46,9 +47,9 @@ namespace GameManager
 
         private void UpdateUI()
         {
-			if (LivesUI != null)
+			if (LivesUI != null && LivesUI.GetComponent<Text>() != null)
 			{
-				LivesUI.text = GameManager_Master.Instance.playerLives.ToString();
+				LivesUI.GetComponent<Text>().text = "Lives : " + GameManager_Master.Instance.playerLives.ToString();
 			}
         }
     }

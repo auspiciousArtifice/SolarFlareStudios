@@ -128,7 +128,7 @@ public class GrapplingHook : MonoBehaviour
 
         if (hooked && fired && !swinging)
         {
-            hook.transform.parent = hookedObj.transform;
+            //hook.transform.parent = hookedObj.transform;
             //playerRB.AddForce(Vector3.MoveTowards(playerRB.transform.position, hook.transform.position, playerTravelSpeed));
             playerRB.MovePosition(Vector3.MoveTowards(transform.position, hook.transform.position, Time.deltaTime * playerTravelSpeed));
             //playerRB.MoveRotation(Quaternion.LookRotation(playerRB.transform.forward, hook.transform.position - playerRB.transform.position));
