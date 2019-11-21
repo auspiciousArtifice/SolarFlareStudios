@@ -8,9 +8,9 @@ public class GrapplingHook : MonoBehaviour
     public GameObject hand; // Used to keep track of the "right palm" area of the player with independent movement
     public GameObject player;
 
-    public float hookTravelSpeed = 5f; // speed the hook flies
-    public float playerTravelSpeed = 5f; // speed which it pulls the player
-    public float maxDistance = 20f;
+    public float hookTravelSpeed; // speed the hook flies
+    public float playerTravelSpeed; // speed which it pulls the player
+    public float maxDistance;
 
     [HideInInspector] public static bool fired;
     [HideInInspector] public static bool swinging;
