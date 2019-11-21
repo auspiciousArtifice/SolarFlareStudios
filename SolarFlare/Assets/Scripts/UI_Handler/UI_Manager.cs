@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GameManager;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,6 +42,11 @@ public class UI_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (levelTime <= 0)
+        {
+            GameManager_Master.Instance.CallEventGameOver();
+        }
+
         // this shouldn't be necessary but... it was buggy so here we are
         score = GameObject.FindGameObjectWithTag("score");
         textObj = GameObject.FindGameObjectWithTag("Notifications");

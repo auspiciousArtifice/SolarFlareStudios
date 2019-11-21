@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class play_on_loud : MonoBehaviour
+public class PlayWhenLoad : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void Start()
+    void Start()
     {
         Time.timeScale = 1f;
     }
