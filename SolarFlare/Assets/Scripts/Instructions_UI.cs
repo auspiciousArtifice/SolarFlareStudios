@@ -16,6 +16,7 @@ public class Instructions_UI : MonoBehaviour
     GameObject coinHud;
     GameObject[] coins;
     GameObject character;
+	bool ranOnce;
 
     public GameObject enemy;
     /*
@@ -32,7 +33,8 @@ public class Instructions_UI : MonoBehaviour
         GrappleInstruction,
         CoinInstruction,
         EvadeEnemiesInstruction,
-        ScoreInstruction
+		AttackSwordInstruction,
+		ScoreInstruction
     };
 
     void Start()
@@ -108,27 +110,43 @@ public class Instructions_UI : MonoBehaviour
 
             case InstructionState.CoinInstruction :
                 textObj.GetComponent<Text>().text = "Collect coins along the way to add to your final score!";
-                for (int i = 0; i < coins.Length; i++)
-                {
-                    coins[i].SetActive(true);
-                }
+				if (!ranOnce)
+				{
+					for (int i = 0; i < coins.Length; i++)
+					{
+						coins[i].SetActive(true);
+					}
+					ranOnce = true;
+				}
                 if (Input.GetKeyDown("tab"))
                 { 
                     state = InstructionState.EvadeEnemiesInstruction;
-                }
+					ranOnce = false;
+				}
                 break;
 
             case InstructionState.EvadeEnemiesInstruction :
-                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies.";
-                enemy.SetActive(true);
+                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies. Click 1 to switch between your grapple hook and your sword";
+				if (!ranOnce)
+				{
+					enemy.SetActive(true);
+					ranOnce = true;
+				}
                 if (Input.GetKeyDown("tab"))
                 {
-                    state = InstructionState.ScoreInstruction;
+                    state = InstructionState.AttackSwordInstruction;
                 }
                 break;
 
+			case InstructionState.AttackSwordInstruction:
+				textObj.GetComponent<Text>().text = "Go to the enemy and click in order to attack";
+				if (Input.GetKeyDown("tab"))
+				{
+					state = InstructionState.ScoreInstruction;
+				}
+				break;
 
-            case InstructionState.ScoreInstruction :
+			case InstructionState.ScoreInstruction :
                 textObj.GetComponent<Text>().text = "Good Luck!!";
                 if (Input.GetKeyDown("tab"))
                 {
