@@ -13,7 +13,7 @@ public class GrapplingHook : MonoBehaviour
     public float maxDistance;
 
     [HideInInspector] public static bool fired;
-    [HideInInspector] public static bool swinging;
+    [HideInInspector] public bool swinging;
     [HideInInspector] public bool hooked;
     [HideInInspector] public GameObject hookedObj;
     [HideInInspector] public Vector3 pullVector;

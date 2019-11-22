@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Animator), typeof(Rigidbody))]
 public class CharacterMovement : MonoBehaviour
 {
-    public float DashDistance;
-    public Vector3 Drag;
-    public AudioClip hitGroundAudio;
-    private AudioSource playerAudio;
+    [SerializeField] private float DashDistance;
+	[SerializeField] private Vector3 Drag;
+	[SerializeField] private AudioClip hitGroundAudio;
+	private AudioSource playerAudio;
 
     private Camera mainCamera;
 
@@ -16,10 +16,14 @@ public class CharacterMovement : MonoBehaviour
     private Collider m_collider;
     private Animator m_animator;
     private RuntimeAnimatorController ground_animator;
-    public RuntimeAnimatorController air_animator;
+	[SerializeField] private RuntimeAnimatorController air_animator;
 
     private Transform leftFoot;
     private Transform rightFoot;
+
+	private GameObject[] Sword;
+	private GameObject Hook;
+	private GrapplingHook grapplingHook;
 
     private Vector3 move;
     private Vector3 dashDirection;
@@ -69,10 +73,33 @@ public class CharacterMovement : MonoBehaviour
             Debug.Log("Collider could not be found for player object.");
         }
 
-        /*m_controller = GetComponent<CharacterController>();
+		Sword = GameObject.FindGameObjectsWithTag("Sword");
+		if (Sword.Length == 0)
+		{
+			Debug.LogWarning("No sword");
+		}
+		else
+		{
+			foreach (GameObject s in Sword)
+			{
+				s.SetActive(false);
+			}
+		}
+		Hook = GameObject.FindGameObjectWithTag("Hook");
+		if (!Hook)
+		{
+			Debug.LogWarning("No hook found");
+		}
+		grapplingHook = GetComponent<GrapplingHook>();
+		if (!grapplingHook)
+		{
+			Debug.LogWarning("No script grappling found");
+		}
+
+		/*m_controller = GetComponent<CharacterController>();
         if (m_controller == null)
             Debug.Log("Character Controller could not be found");*/
-    }
+	}
 
     void Start()
     {
@@ -99,6 +126,7 @@ public class CharacterMovement : MonoBehaviour
 		Sprint();
         SwingSword();
         PushButton();
+		SwitchWeapon();
         
         //Rotate();
         //Dance();
@@ -125,7 +153,7 @@ public class CharacterMovement : MonoBehaviour
             inputForward = Mathf.Clamp(Mathf.Lerp(inputForward, v,
                 Time.deltaTime * forwardInputFilter), -forwardSpeedLimit, forwardSpeedLimit);
         }
-        else if (GrapplingHook.swinging)
+        else if (grapplingHook.swinging)
         {
             m_rigidbody.AddForce(v * mainCamera.transform.forward.normalized * swingingSpeedMult);
             //m_rigidbody.transform.Rotate(0, h * Time.deltaTime * turnInputFilter, 0, Space.Self);
@@ -152,11 +180,24 @@ public class CharacterMovement : MonoBehaviour
 
             }
         }
-        else if (!isGrounded && !GrapplingHook.swinging)
+        else if (!isGrounded && !grapplingHook.swinging)
         {
 
         }
     }
+
+	private void SwitchWeapon()
+	{
+		if (Input.GetKeyDown("1"))
+		{
+			foreach (GameObject s in Sword)
+			{
+				s.SetActive(!s.activeSelf);
+			}
+			grapplingHook.enabled = !Hook.activeSelf;
+			Hook.SetActive(!Hook.activeSelf);
+		}
+	}
 
 	private void Sprint()
 	{
@@ -180,13 +221,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void SwingSword()
     {
-		if (Input.GetButtonDown("SwingSword"))
+		if (Input.GetMouseButtonDown(0) && Sword[0].activeSelf)
 		{
 			m_animator.SetTrigger("SwingSword");
 		}
 	}
 
-    private bool isSwingingSword()
+    public bool isSwingingSword()
     {
         return m_animator.GetCurrentAnimatorStateInfo(0).IsName("SwordSwing");
     }
@@ -237,10 +278,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        m_animator.SetFloat("Turn", inputTurn);
-        m_animator.SetFloat("Forward", inputForward);
-        //m_animator.SetBool("Dance", m_dance);
-        m_animator.SetBool("Sprint", m_sprint);
+		if (m_animator.runtimeAnimatorController == ground_animator)
+		{
+			m_animator.SetFloat("Turn", inputTurn);
+			m_animator.SetFloat("Forward", inputForward);
+			//m_animator.SetBool("Dance", m_dance);
+			m_animator.SetBool("Sprint", m_sprint);
+		}
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -266,7 +310,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "ground" && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("SwordSwing"))
+        if (collision.gameObject.tag == "ground" && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("SwordSwing") && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
         {
             m_animator.runtimeAnimatorController = air_animator;
             m_animator.applyRootMotion = false;
