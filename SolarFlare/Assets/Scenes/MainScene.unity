@@ -1867,16 +1867,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -39.983
       objectReference: {fileID: 0}
-    - target: {fileID: 7901481403266626383, guid: 29173623f1417754cbf4e146a090a413,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7901481403266626380, guid: 29173623f1417754cbf4e146a090a413,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3845763727209967453, guid: 29173623f1417754cbf4e146a090a413,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -1891,6 +1881,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 44.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901481403266626383, guid: 29173623f1417754cbf4e146a090a413,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901481403266626380, guid: 29173623f1417754cbf4e146a090a413,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29173623f1417754cbf4e146a090a413, type: 3}
@@ -3408,8 +3408,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ExitGame
+      - m_Target: {fileID: 749488375}
+        m_MethodName: CallEventRestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10256,8 +10256,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ExitGame
+      - m_Target: {fileID: 749488375}
+        m_MethodName: CallQuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18295,16 +18295,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 7901481403266626383, guid: 29173623f1417754cbf4e146a090a413,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7901481403266626380, guid: 29173623f1417754cbf4e146a090a413,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3845763727209967453, guid: 29173623f1417754cbf4e146a090a413,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -18319,6 +18309,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: -13.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901481403266626383, guid: 29173623f1417754cbf4e146a090a413,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901481403266626380, guid: 29173623f1417754cbf4e146a090a413,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29173623f1417754cbf4e146a090a413, type: 3}
