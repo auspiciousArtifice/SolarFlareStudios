@@ -42,6 +42,10 @@ public class CharacterMovement : MonoBehaviour
 
     //private int groundContactCount;
 
+    private int maxDashes = 1;
+
+    private int dashesLeft;
+
     private bool turnBasedOnLook;
 
     private bool isGrounded;
@@ -226,7 +230,7 @@ public class CharacterMovement : MonoBehaviour
     // makes character dash if press left alt
     private void Dash()
     {
-        if (Input.GetButtonDown("Dash") && !m_dash)
+        if (Input.GetButtonDown("Dash") && !m_dash && dashesLeft > 0)
         {
             Debug.Log("Dash");
 
@@ -235,6 +239,7 @@ public class CharacterMovement : MonoBehaviour
             //m_rigidbody.MovePosition(Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
                                        //(Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime))));
             m_dash = true;
+            dashesLeft--;
 
         }
         //move.x /= 1 + Drag.x * Time.deltaTime;
@@ -299,6 +304,7 @@ public class CharacterMovement : MonoBehaviour
             isGrounded = true;
             m_jump = false;
             m_dash = false;
+            dashesLeft = maxDashes;
         }
 
         if (collision.gameObject.tag == "ground" && hitGroundAudio != null)
