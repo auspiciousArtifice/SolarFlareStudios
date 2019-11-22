@@ -8,49 +8,36 @@ public class DrawBridge : MonoBehaviour
 
     public GameObject bridge;
     private Animator bridgeAnimator;
-    public GameObject player;
     private Animator playerAnimator;
-    private bool pushingButton;
+    private bool pushingButton = false;
 
     void Start()
     {
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		if (player)
+		{
+			playerAnimator = player.GetComponent<Animator>();
+			if (!playerAnimator)
+			{
+				Debug.LogWarning("no player animator");
+			}
+		}
+		else
+		{
+			Debug.LogWarning("no player found");
+		}
         bridgeAnimator = bridge.GetComponent<Animator>();
-        playerAnimator = player.GetComponent<Animator>();
+		if (!bridgeAnimator)
+		{
+			Debug.LogWarning("no bridge animator");
+		}
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
-        
-    }
-
-    private void IsPushingButton()
-    {
-        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.ButtonPush"))
-        {
-            pushingButton = true;
-        }
-        else
-        {
-            pushingButton = false;
-        }
-    }
-
-   // private void OnCollisionEnter(Collision collision)
-   // {
-       // Debug.Log("Bridge is drawing");
-    //    if (pushingButton)
-     //   {
-            //bridgeAnimator.SetBool("ButtonPressed", true);
-    //    }
-       
-    //}
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            bridgeAnimator.SetBool("ButtonPressed", true);
-        }
+		if (other.CompareTag("Player") && Input.GetButtonDown("PushButton"))
+		{
+			bridgeAnimator.SetBool("ButtonPressed", pushingButton);
+		}
     }
 }

@@ -8,7 +8,9 @@ namespace GameManager
 {
     public class GameManager_PlayerDied : MonoBehaviour
     {
-        public GameObject LivesUI;
+        [HideInInspector] public GameObject LivesUI;
+		[SerializeField] private float secondsToFade = 3f;
+
 
         private void OnEnable()
         {
@@ -18,10 +20,6 @@ namespace GameManager
 			if (LivesUI == null)
 			{
 				Debug.LogWarning("missing UI reference for life");
-			}
-			else
-			{
-				DontDestroyOnLoad(LivesUI.gameObject);
 			}
         }
 
@@ -41,7 +39,7 @@ namespace GameManager
         IEnumerator Dead()
         {
             Debug.Log("dead");
-            yield return new WaitForSeconds(5);
+			yield return new WaitForSeconds(secondsToFade);
             GameManager_Master.Instance.CallEventRestartLevel();
         }
 

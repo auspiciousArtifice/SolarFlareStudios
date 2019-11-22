@@ -25,14 +25,11 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 dashDirection;
 
     // Animator variables
-    private bool m_jump;
-    private bool m_dance;
-    private bool m_dash;
+    //private bool m_dance;
 	private bool m_sprint;
-    private bool m_swingSword;
-    private bool m_pushButton;
     private float inputForward = 0f;
     private float inputTurn = 0f;
+	private float extraTurn;
 
     public float forwardInputFilter;
     public float turnInputFilter;
@@ -42,9 +39,7 @@ public class CharacterMovement : MonoBehaviour
 
     //private int groundContactCount;
 
-    private bool turnBasedOnLook;
-
-    private bool isGrounded;
+    private bool isGrounded = true;
 
     public GameObject buttonObject;
 
@@ -109,14 +104,11 @@ public class CharacterMovement : MonoBehaviour
 
         // send input and other state parameters to the animator
         UpdateAnimator();
-        m_dash = false;
-        m_jump = false;
     }
 
     // Calculate move
     private void Move()
     {
-        turnBasedOnLook = false;
 
         float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
         float v = Input.GetAxisRaw("Vertical"); // setup v variables as our vertical input axis
@@ -140,15 +132,16 @@ public class CharacterMovement : MonoBehaviour
         if (isGrounded)
         {
             inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
+
             float angle = Vector3.SignedAngle(transform.forward, mainCamera.transform.forward, Vector3.up); //Angle between player direction and camera direction.
             if (inputForward > 0.5 && (angle > 10 || angle < -10))
             {
-                turnBasedOnLook = true;
                 h = angle < 0 ? -1 : 1;
 
                 h = h * Mathf.Sqrt(1f - 0.5f * v * v);
 
-                inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
+				// commented off because breaking things
+                //inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
 
 
             }
@@ -175,29 +168,21 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("PushButton"))
         {
-            m_pushButton = true;
-        }
-        else if (Input.GetButtonUp("PushButton"))
-        {
-            m_pushButton = false;
+			m_animator.SetTrigger("BridgeButtonPressed");
         }
     }
 
     private void SwingSword()
     {
-        if (Input.GetButtonDown("SwingSword"))
-        {
-            m_swingSword = true;
-        }
-        else if (Input.GetButtonUp("SwingSword"))
-        {
-            m_swingSword = false;
-        }
-    }
+		if (Input.GetButtonDown("SwingSword"))
+		{
+			m_animator.SetTrigger("SwingSword");
+		}
+	}
 
     private bool isSwingingSword()
     {
-        return m_animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.SwordSwing");
+        return m_animator.GetCurrentAnimatorStateInfo(0).IsName("SwordSwing");
     }
 
     // Apply rotation
@@ -211,30 +196,23 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            //move.y = JumpHeight;
-            m_jump = true;
-            StartCoroutine(FinishJump());
+			//move.y = JumpHeight;
+			m_animator.SetTrigger("Jump");
         }
-    }
-
-    IEnumerator FinishJump()
-    {
-        yield return new WaitForSeconds(0.5f);
-        m_jump = false;
     }
 
     // makes character dash if press left alt
     private void Dash()
     {
-        if (Input.GetButtonDown("Dash") && !m_dash)
+        if (Input.GetButtonDown("Dash"))
         {
             Debug.Log("Dash");
 
             dashDirection = mainCamera.transform.forward.normalized;
             m_rigidbody.AddForce(dashDirection * DashDistance, ForceMode.Impulse);
-            //m_rigidbody.MovePosition(Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
-                                       //(Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime))));
-            m_dash = true;
+			//m_rigidbody.MovePosition(Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
+			//(Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime))));
+			m_animator.SetTrigger("Dash");
 
         }
         //move.x /= 1 + Drag.x * Time.deltaTime;
@@ -250,44 +228,12 @@ public class CharacterMovement : MonoBehaviour
     //    }
     //}
 
-    /*private void OnAnimatorMove()
-    {
-        Vector3 newRootPosition;
-        Quaternion newRootRotation;
-
-        //bool isGrounded = IsGrounded || CharacterCommon.CheckGroundNear(this.transform.position, jumpableGroundNormalMaxAngle, 0.1f, 1f, out closeToJumpableGround);
-
-        //if (isGrounded)
-        //{
-            //use root motion as is if on the ground		
-            newRootPosition = m_animator.rootPosition;
-        //}
-        //else
-        //{
-            //Simple trick to keep model from climbing other rigidbodies that aren't the ground
-            //newRootPosition = new Vector3(m_animator.rootPosition.x, this.transform.position.y, m_animator.rootPosition.z);
-        //}
-
-        //use rotational root motion as is
-        newRootRotation = m_animator.rootRotation;
-
-
-        this.transform.position = Vector3.LerpUnclamped(this.transform.position, newRootPosition, rootMovementSpeed);
-        this.transform.rotation = Quaternion.LerpUnclamped(this.transform.rotation, newRootRotation, rootTurnSpeed);
-    }*/
-
     private void UpdateAnimator()
     {
         m_animator.SetFloat("Turn", inputTurn);
-
         m_animator.SetFloat("Forward", inputForward);
-        m_animator.SetBool("Jump", m_jump);
-        m_animator.SetBool("Dance", m_dance);
+        //m_animator.SetBool("Dance", m_dance);
         m_animator.SetBool("Sprint", m_sprint);
-        m_animator.SetBool("Dash", m_dash);
-        m_animator.SetBool("SwingSword", m_swingSword);
-        m_animator.SetBool("BridgeButtonPressed", m_pushButton);
-        //m_animator.speed = animationSpeed;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -297,24 +243,22 @@ public class CharacterMovement : MonoBehaviour
             m_animator.runtimeAnimatorController = ground_animator;
             m_animator.applyRootMotion = true;
             isGrounded = true;
-            m_jump = false;
-            m_dash = false;
-        }
 
-        if (collision.gameObject.tag == "ground" && hitGroundAudio != null)
-        {
-            playerAudio.clip = hitGroundAudio;
-            playerAudio.Play();
-            Debug.Log("sound played");
-        } else
-        {
-           //Debug.Log("ground sound is probably borken");
-        }
+			if (hitGroundAudio != null)
+			{
+				playerAudio.clip = hitGroundAudio;
+				playerAudio.Play();
+			}
+			else
+			{
+				Debug.LogWarning("ground sound is probably broken");
+			}
+		}
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "ground")
+        if (collision.gameObject.tag == "ground" && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("SwordSwing"))
         {
             m_animator.runtimeAnimatorController = air_animator;
             m_animator.applyRootMotion = false;
