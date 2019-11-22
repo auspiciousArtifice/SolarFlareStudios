@@ -160,7 +160,9 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
-            m_rigidbody.AddForce(mainCamera.transform.forward.normalized * airbornSpeedMult);
+            m_rigidbody.AddForce(mainCamera.transform.forward.normalized * airbornSpeedMult * v);
+            Vector3 perp = Vector3.Cross(mainCamera.transform.forward.normalized, Vector3.up);
+            m_rigidbody.AddForce(perp * airbornSpeedMult * (-h));
             //m_rigidbody.AddForce(new Vector3(v, 0, -h).normalized * 5f);
         }
         if (isGrounded)
