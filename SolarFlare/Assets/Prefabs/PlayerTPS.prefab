@@ -216,7 +216,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.0121324
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -380,11 +380,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AngularDrag
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 632773091212320094, guid: 79a80a037e8d0f84a87863b7871aaed7,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 632773091212320092, guid: 79a80a037e8d0f84a87863b7871aaed7,
         type: 3}
