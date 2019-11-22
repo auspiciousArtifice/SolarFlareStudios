@@ -77,7 +77,7 @@ public class Instructions_UI : MonoBehaviour
                     textObj.GetComponent<Text>().text = "First we'll explain some quick instructions. When you're ready to move on, just press tab!";
                     runTimer = true;
                 }
-                
+
                 if (Input.GetKeyDown("tab"))
                 {
                     state = InstructionState.MoveCameraInstruction;
@@ -119,7 +119,7 @@ public class Instructions_UI : MonoBehaviour
 					ranOnce = true;
 				}
                 if (Input.GetKeyDown("tab"))
-                { 
+                {
                     state = InstructionState.EvadeEnemiesInstruction;
 					ranOnce = false;
 				}
@@ -167,7 +167,7 @@ public class Instructions_UI : MonoBehaviour
         /*
         // this shouldn't be necessary but... it was buggy so here we are
         textObj = GameObject.FindGameObjectWithTag("Notifications");
-       
+
         coinHud = GameObject.FindGameObjectWithTag("coin_hud");
         endScreen = GameObject.FindGameObjectWithTag("end_screen");
         character = GameObject.FindGameObjectWithTag("Player");
@@ -177,7 +177,7 @@ public class Instructions_UI : MonoBehaviour
 
         // makle the text updates
         if (textObj != null) textObj.GetComponent<Text>().text = message;
-        
+
         if (character != null) coinNum = character.GetComponent<Coin_Counter>().getCoinCount() * 5;
         if (coinHud != null) coinHud.GetComponent<Text>().text = coinNum.ToString();
 

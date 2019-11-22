@@ -43,7 +43,13 @@ public class CharacterMovement : MonoBehaviour
 
     //private int groundContactCount;
 
-    private bool isGrounded = true;
+    private int maxDashes = 1;
+
+    private int dashesLeft;
+
+    private bool turnBasedOnLook;
+
+    private bool isGrounded;
 
     public GameObject buttonObject;
 
@@ -245,12 +251,13 @@ public class CharacterMovement : MonoBehaviour
     // makes character dash if press left alt
     private void Dash()
     {
-        if (Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash") && dashesLeft > 0)
         {
             Debug.Log("Dash");
 
             dashDirection = mainCamera.transform.forward.normalized;
             m_rigidbody.AddForce(dashDirection * DashDistance, ForceMode.Impulse);
+            dashesLeft--;
 			//m_rigidbody.MovePosition(Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
 			//(Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime))));
 			m_animator.SetTrigger("Dash");
@@ -287,16 +294,17 @@ public class CharacterMovement : MonoBehaviour
             m_animator.runtimeAnimatorController = ground_animator;
             m_animator.applyRootMotion = true;
             isGrounded = true;
+            dashesLeft = maxDashes;
+        }
 
-			if (hitGroundAudio != null)
-			{
-				playerAudio.clip = hitGroundAudio;
-				playerAudio.Play();
-			}
-			else
-			{
-				Debug.LogWarning("ground sound is probably broken");
-			}
+		if (hitGroundAudio != null)
+		{
+			playerAudio.clip = hitGroundAudio;
+			playerAudio.Play();
+		}
+		else
+		{
+			Debug.LogWarning("ground sound is probably broken");
 		}
     }
 
