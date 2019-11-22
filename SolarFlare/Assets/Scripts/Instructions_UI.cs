@@ -9,13 +9,13 @@ public class Instructions_UI : MonoBehaviour
     float levelTime;
     float instructionTime;
     float LEVEL_TOTAL_TIME = 65;
-    int coinNum = 0;
+    //int coinNum = 0;
     bool runTimer = false;
     GameObject textObj;
     GameObject timer;
-    GameObject coinHud;
+    //GameObject coinHud;
     GameObject[] coins;
-    GameObject character;
+    //GameObject character;
 	bool ranOnce;
 
     public GameObject enemy;
@@ -42,8 +42,8 @@ public class Instructions_UI : MonoBehaviour
         state = InstructionState.WelcomeInstruction;
         textObj = GameObject.FindGameObjectWithTag("Notifications");
         timer = GameObject.FindGameObjectWithTag("timer");
-        coinHud = GameObject.FindGameObjectWithTag("coin_hud");
-        character = GameObject.FindGameObjectWithTag("Player");
+        //coinHud = GameObject.FindGameObjectWithTag("coin_hud");
+        //character = GameObject.FindGameObjectWithTag("Player");
         coins = GameObject.FindGameObjectsWithTag("PickUp");
         levelTime = LEVEL_TOTAL_TIME;
         instructionTime = 0;
