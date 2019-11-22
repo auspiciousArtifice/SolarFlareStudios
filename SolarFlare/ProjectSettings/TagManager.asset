@@ -9,8 +9,6 @@ TagManager:
   - Hook
   - Hookable
   - ground
-  - Water
-  - Animal
   - Notifications
   - timer
   - end_screen
@@ -18,6 +16,7 @@ TagManager:
   - PickUp
   - DeathFloor
   - score
+  - Sword
   layers:
   - Default
   - TransparentFX
@@ -31,7 +30,7 @@ TagManager:
   - Hook
   - Player
   - PostProcessing
-  - 
+  - Sword
   - 
   - 
   - 
