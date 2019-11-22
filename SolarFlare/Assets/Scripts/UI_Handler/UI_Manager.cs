@@ -65,12 +65,13 @@ public class UI_Manager : MonoBehaviour
         if (coinHud != null) coinHud.GetComponent<Text>().text = "Score : " + score.GetComponent<Score_Tracker>().getScore().ToString();
 
         int finalScore = score.GetComponent<Score_Tracker>().getScore() + (int)levelTime;
-
-        endScreen.GetComponent<Text>().text =
-            "Congratulations!!\n" +
-            "You won the game with score of " + finalScore + ".\n" +
-            "Try again to beat this score!";
-
+		if (endScreen)
+		{
+			endScreen.GetComponent<Text>().text =
+				"Congratulations!!\n" +
+				"You won the game with score of " + finalScore + ".\n" +
+				"Try again to beat this score!";
+		}
         levelTime -= Time.deltaTime;
 
     }

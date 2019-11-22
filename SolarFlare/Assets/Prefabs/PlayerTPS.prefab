@@ -125,6 +125,7 @@ MonoBehaviour:
   hookTravelSpeed: 25
   playerTravelSpeed: 15
   maxDistance: 20
+  swinging: 0
   hooked: 0
   hookedObj: {fileID: 0}
   pullVector: {x: 0, y: 0, z: 0}
@@ -315,6 +316,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Longsword w_ Colliders
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_TagString
+      value: Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.174
@@ -371,6 +380,22 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_TagString
+      value: Sword
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
 --- !u!1001 &6502948460033952998
@@ -385,10 +410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HookHolder
       objectReference: {fileID: 0}
-    - target: {fileID: 632773091359646839, guid: 79a80a037e8d0f84a87863b7871aaed7,
+    - target: {fileID: 632773091212320066, guid: 79a80a037e8d0f84a87863b7871aaed7,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Hook
       objectReference: {fileID: 0}
     - target: {fileID: 632773091359646832, guid: 79a80a037e8d0f84a87863b7871aaed7,
         type: 3}
@@ -487,6 +512,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8667140777445833856}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: f6eed04e247e56342918693c6c96d393,
+        type: 3}
+      propertyPath: m_Name
+      value: knight_d_pelegrini@T-Pose
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f6eed04e247e56342918693c6c96d393,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f6eed04e247e56342918693c6c96d393,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -541,16 +576,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f6eed04e247e56342918693c6c96d393,
-        type: 3}
-      propertyPath: m_Name
-      value: knight_d_pelegrini@T-Pose
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f6eed04e247e56342918693c6c96d393,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6eed04e247e56342918693c6c96d393, type: 3}

@@ -85,6 +85,7 @@ public class Navigation : MonoBehaviour
 			{
 				runningAway = true;
 				seekingPlayer = false;
+				attack = false;
 				seekingPatrol = false;
 				RunFrom(player.transform);
 			}
@@ -113,7 +114,7 @@ public class Navigation : MonoBehaviour
             }
             if (patrol)
 			{
-				if (!seekingPatrol && !seekingPlayer && !runningAway)
+				if (!seekingPatrol && !seekingPlayer && !runningAway || curDest.position == null)
 				{
 					curDest = patrolSpots[patrolIndex % patrolSpots.Count].GetComponent<Transform>();
 					patrolIndex++;
