@@ -44,7 +44,7 @@ public class AudioEventManager : MonoBehaviour
     {
 
         EventManager.StopListening<EnemyAttackEvent, Vector3>(enemyAttackEventListener);
-        EventManager.StartListening<EnemyDamageEvent, Vector3>(enemyDamageEventListener);
+        EventManager.StopListening<EnemyDamageEvent, Vector3>(enemyDamageEventListener);
     }
 
 

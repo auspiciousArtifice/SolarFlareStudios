@@ -72,11 +72,11 @@ public class Instructions_UI : MonoBehaviour
                 }
                 else if (instructionTime < 20)
                 {
-                    textObj.GetComponent<Text>().text = "First we'll explain some quick instructions. When you're ready to move on, just click!";
+                    textObj.GetComponent<Text>().text = "First we'll explain some quick instructions. When you're ready to move on, just press tab!";
                     runTimer = true;
                 }
                 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown("tab"))
                 {
                     state = InstructionState.MoveCameraInstruction;
                 }
@@ -84,15 +84,15 @@ public class Instructions_UI : MonoBehaviour
 
             case InstructionState.MoveCameraInstruction :
                 textObj.GetComponent<Text>().text = "Move your mouse to rotate the game camera.";
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown("tab"))
                 {
                    state = InstructionState.MovePlayerInstruction;
                 }
                 break;
 
             case InstructionState.MovePlayerInstruction :
-                textObj.GetComponent<Text>().text = "Use arrows to move your game character and space to jump. Using shift will allow you to sprint.";
-                if (Input.GetMouseButtonDown(0))
+                textObj.GetComponent<Text>().text = "Use arrows to move your game character and space to jump. Using shift will allow you to sprint and alt will make you dash mid-air.";
+                if (Input.GetKeyDown("tab"))
                 {
                     state = InstructionState.GrappleInstruction;
                 }
@@ -100,7 +100,7 @@ public class Instructions_UI : MonoBehaviour
 
             case InstructionState.GrappleInstruction:
                 textObj.GetComponent<Text>().text = "Click to launch a grappling hook and click again to release yourself! Q and E will shorten your grapple hook.";
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown("tab"))
                 {
                     state = InstructionState.CoinInstruction;
                 }
@@ -112,7 +112,7 @@ public class Instructions_UI : MonoBehaviour
                 {
                     coins[i].SetActive(true);
                 }
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown("tab"))
                 { 
                     state = InstructionState.EvadeEnemiesInstruction;
                 }
@@ -121,7 +121,7 @@ public class Instructions_UI : MonoBehaviour
             case InstructionState.EvadeEnemiesInstruction :
                 textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies.";
                 enemy.SetActive(true);
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown("tab"))
                 {
                     state = InstructionState.ScoreInstruction;
                 }
@@ -130,9 +130,9 @@ public class Instructions_UI : MonoBehaviour
 
             case InstructionState.ScoreInstruction :
                 textObj.GetComponent<Text>().text = "Good Luck!!";
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown("tab"))
                 {
-                    SceneManager.LoadScene("MainScene");
+                    SceneManager.LoadSceneAsync("MainScene");
                 }
                 break;
 
@@ -144,7 +144,7 @@ public class Instructions_UI : MonoBehaviour
         instructionTime += Time.deltaTime;
 
         timer = GameObject.FindGameObjectWithTag("timer");
-        if (timer != null) timer.GetComponent<Text>().text = ((int)levelTime).ToString();
+        if (timer != null) timer.GetComponent<Text>().text = "Time Remaining :  " + ((int)levelTime).ToString();
 
         /*
         // this shouldn't be necessary but... it was buggy so here we are
