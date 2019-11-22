@@ -456,9 +456,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3903656
-  m_Height: 1.7519007
+  m_Height: 1.842454
   m_Direction: 1
-  m_Center: {x: 0, y: -0.12404966, z: 0.1096344}
+  m_Center: {x: 0, y: 0.8770766, z: 0.1096344}
 --- !u!114 &2342876637801401071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,11 +472,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrol: 0
-  patrolSpots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  multiplyBy: 0
+  patrolSpots: []
+  multiplyBy: 0.005
   maxAI: 1
   distanceToAttack: 2
 --- !u!114 &2342876637801401068
