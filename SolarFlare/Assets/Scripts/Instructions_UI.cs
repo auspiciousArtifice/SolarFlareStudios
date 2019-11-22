@@ -119,7 +119,7 @@ public class Instructions_UI : MonoBehaviour
                 break;
 
             case InstructionState.EvadeEnemiesInstruction :
-                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies.";
+                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies. Use N to attack!";
                 enemy.SetActive(true);
                 if (Input.GetKeyDown("tab"))
                 {
