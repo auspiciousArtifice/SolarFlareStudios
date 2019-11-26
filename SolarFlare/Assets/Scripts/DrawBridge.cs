@@ -33,11 +33,11 @@ public class DrawBridge : MonoBehaviour
 		}
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-		if (other.CompareTag("Player") && Input.GetButtonDown("PushButton"))
+		if (other.tag == "Player")
 		{
-			bridgeAnimator.SetBool("ButtonPressed", pushingButton);
+			bridgeAnimator.SetBool("ButtonPressed", true);
 		}
     }
 }
