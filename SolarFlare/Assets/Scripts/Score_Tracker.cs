@@ -5,24 +5,30 @@ using UnityEngine;
 public class Score_Tracker : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static int score = 0;
+    public int score = 0;
 
-    public static void incrementScoreBy(int amt)
+    public static Score_Tracker Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+    public void incrementScoreBy(int amt)
     {
         score += amt;
     }
 
-    public static void decrementScoreBy(int amt)
+    public void decrementScoreBy(int amt)
     {
         score -= amt;
     }
 
-    public static int getScore()
+    public int getScore()
     {
         return score;
     }
 
-    public static int finalScore()
+    public int finalScore()
      {
         // incorporate time
         return score;

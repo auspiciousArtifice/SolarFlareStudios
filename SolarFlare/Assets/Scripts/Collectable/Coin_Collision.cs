@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin_Counter : MonoBehaviour
+public class Coin_Collision : MonoBehaviour
 {
     int coins = 0;
     public AudioClip cashGrabAudio;
@@ -26,7 +26,7 @@ public class Coin_Counter : MonoBehaviour
             coins++;
             coinAudio.clip = cashGrabAudio;
             coinAudio.Play();
-            Score_Tracker.incrementScoreBy(5);
+            Score_Tracker.Instance.incrementScoreBy(5);
         }
     }
 

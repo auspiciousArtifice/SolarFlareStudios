@@ -215,6 +215,6 @@ public class Navigation : MonoBehaviour
 	public void ExecuteDamageEvent()
 	{
 		EventManager.TriggerEvent<EnemyDamageEvent, Vector3>(transform.position);
-        Score_Tracker.incrementScoreBy(10);    
+        Score_Tracker.Instance.incrementScoreBy(10);    
     }
 }

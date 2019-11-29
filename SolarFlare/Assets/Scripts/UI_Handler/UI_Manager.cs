@@ -59,9 +59,9 @@ public class UI_Manager : MonoBehaviour
         // makle the text updates
         if (textObj != null) textObj.GetComponent<Text>().text = message;
         if (timer != null) timer.GetComponent<Text>().text = "Time Remaining : " + ((int)levelTime).ToString();
-        if (coinHud != null) coinHud.GetComponent<Text>().text = "Score : " + Score_Tracker.getScore().ToString();
+        if (coinHud != null) coinHud.GetComponent<Text>().text = "Score : " + Score_Tracker.Instance.getScore().ToString();
 
-        int finalScore = Score_Tracker.getScore() + (int)levelTime;
+        int finalScore = Score_Tracker.Instance.getScore() + (int)levelTime;
 		if (endScreen)
 		{
 			endScreen.GetComponent<Text>().text =
