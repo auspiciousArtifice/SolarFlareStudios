@@ -15,7 +15,6 @@ public class UI_Manager : MonoBehaviour
     GameObject textObj;
     GameObject timer;
     GameObject coinHud;
-    GameObject endScreen;
     GameObject character;
 
     // Start is called before the first frame update
@@ -26,7 +25,6 @@ public class UI_Manager : MonoBehaviour
         textObj = GameObject.FindGameObjectWithTag("Notifications");
         timer = GameObject.FindGameObjectWithTag("timer");
         coinHud = GameObject.FindGameObjectWithTag("coin_hud");
-        endScreen = GameObject.FindGameObjectWithTag("end_screen");
         character = GameObject.FindGameObjectWithTag("Player");
 
         levelTime = LEVEL_TOTAL_TIME;
@@ -49,27 +47,16 @@ public class UI_Manager : MonoBehaviour
         textObj = GameObject.FindGameObjectWithTag("Notifications");
         timer = GameObject.FindGameObjectWithTag("timer");
         coinHud = GameObject.FindGameObjectWithTag("coin_hud");
-        endScreen = GameObject.FindGameObjectWithTag("end_screen");
         character = GameObject.FindGameObjectWithTag("Player");
 
         string message = "";
-        if (character != null && debug) message = character.gameObject.GetComponent<Rigidbody>().velocity.ToString();
+        if (character && debug) message = character.gameObject.GetComponent<Rigidbody>().velocity.ToString();
         
 
         // makle the text updates
-        if (textObj != null) textObj.GetComponent<Text>().text = message;
-        if (timer != null) timer.GetComponent<Text>().text = "Time Remaining : " + ((int)levelTime).ToString();
-        if (coinHud != null) coinHud.GetComponent<Text>().text = "Score : " + Score_Tracker.Instance.getScore().ToString();
-
-        int finalScore = Score_Tracker.Instance.getScore() + (int)levelTime;
-		if (endScreen)
-		{
-			endScreen.GetComponent<Text>().text =
-				"Congratulations!!\n" +
-				"You won the game with score of " + finalScore + ".\n" +
-				"Try again to beat this score!";
-		}
+        if (textObj) textObj.GetComponent<Text>().text = message;
+        if (timer) timer.GetComponent<Text>().text = "Time Remaining : " + ((int)levelTime).ToString();
+        if (coinHud) coinHud.GetComponent<Text>().text = "Score : " + Score_Tracker.Instance.getScore().ToString();
         levelTime -= Time.deltaTime;
-
     }
 }

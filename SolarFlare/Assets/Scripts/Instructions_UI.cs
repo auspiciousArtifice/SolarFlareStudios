@@ -161,6 +161,7 @@ public class Instructions_UI : MonoBehaviour
         if (stateNum == states.Length)
         {
             SceneManager.LoadSceneAsync("MainScene");
+            stateNum++;
         }
     }
 
