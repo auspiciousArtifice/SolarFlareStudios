@@ -77,8 +77,14 @@ namespace GameManager
         {
             if (PlayerDiedEvent != null)
             {
-                playerLives--;
-                PlayerDiedEvent();
+                if (playerLives > 0)
+                {
+                    playerLives--;
+                    PlayerDiedEvent();
+                } else
+                {
+                    CallEventGameOver();
+                }
             }
         }
 

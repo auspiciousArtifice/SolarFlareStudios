@@ -80,14 +80,14 @@ public class Instructions_UI : MonoBehaviour
             case InstructionState.WelcomeInstruction :
                 if (instructionTime < 5)
                 {
-                    textObj.GetComponent<Text>().text = "Welcome to Solar Flare Studios!";
+                    textObj.GetComponent<Text>().text = "Welcome to Solar Flare!";
                 }
-                else if (instructionTime < 10)
+                else if (instructionTime < 15)
                 {
                     textObj.GetComponent<Text>().text = "This is a game where you race to the level endpoint before time runs out!";
                     runTimer = true;
                 }
-                else if (instructionTime < 20)
+                else if (instructionTime < 30)
                 {
                     textObj.GetComponent<Text>().text = "First we'll explain some quick instructions. When you're ready to move on, just press tab!";
                     runTimer = true;
@@ -153,7 +153,7 @@ public class Instructions_UI : MonoBehaviour
         if (Input.GetKeyDown("tab"))
         {
             stateNum++;
-        } else if (Input.GetKeyDown("backspace"))
+        } else if (Input.GetKeyDown("backspace") && stateNum > 0)
         {
             stateNum--;
         }

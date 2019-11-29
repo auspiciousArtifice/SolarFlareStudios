@@ -17,6 +17,7 @@ TagManager:
   - DeathFloor
   - score
   - Sword
+  - Lives
   layers:
   - Default
   - TransparentFX

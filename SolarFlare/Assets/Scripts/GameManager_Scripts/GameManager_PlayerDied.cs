@@ -40,7 +40,7 @@ namespace GameManager
         {
             Debug.Log("dead");
 			yield return new WaitForSeconds(secondsToFade);
-            GameManager_Master.Instance.CallEventRestartLevel();
+            if (GameManager_Master.Instance.playerLives > 0) GameManager_Master.Instance.CallEventRestartLevel();
         }
 
         private void UpdateUI()

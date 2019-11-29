@@ -32,8 +32,19 @@ namespace GameManager
 
         IEnumerator GameOverPanel()
         {
+            
+            CanvasGroup canvasGroup = panelGameOver.GetComponent<CanvasGroup>();
+            if (canvasGroup)
+            {  
+                canvasGroup.interactable = true;
+                canvasGroup.blocksRaycasts = true;
+                canvasGroup.alpha = 1f;
+                Time.timeScale = 0f;
+            } else
+            {
+                Debug.LogWarning("Missing End Game Panel Canvas Group reference");
+            }
             yield return new WaitForSeconds(0.5f);
-            panelGameOver.SetActive(true);
         }
     }
 }

@@ -15736,6 +15736,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasGameOver
       objectReference: {fileID: 0}
+    - target: {fileID: 4180592349229973752, guid: b477ee53e92ed654a87b9615a894caed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4180592349229973748, guid: b477ee53e92ed654a87b9615a894caed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15966,6 +15971,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3430945319359226184, guid: 5b15236851608d04ba06d57af0986dc4,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b15236851608d04ba06d57af0986dc4, type: 3}
 --- !u!1001 &5594211581323944076
@@ -16054,6 +16064,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isStartMenuScene
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667755925258933296, guid: 0b01003cfbed4bf40aa72b667879b5dd,
+        type: 3}
+      propertyPath: playerLives
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6667755924976354834, guid: 0b01003cfbed4bf40aa72b667879b5dd,
         type: 3}
