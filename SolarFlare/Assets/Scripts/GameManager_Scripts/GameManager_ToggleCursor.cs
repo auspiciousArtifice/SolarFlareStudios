@@ -38,7 +38,11 @@ namespace GameManager
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
-
+            if (GameManager_Master.Instance.isStartMenuScene || GameManager_Master.Instance.isMenuOn)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
             /*if (SceneManager.GetActiveScene().buildIndex == 0)
             {
                 Cursor.lockState = CursorLockMode.None;

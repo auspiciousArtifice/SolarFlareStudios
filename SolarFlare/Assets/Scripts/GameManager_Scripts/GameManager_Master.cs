@@ -27,6 +27,7 @@ namespace GameManager
         public event GameManagerEventHandler PlayerDiedEvent;
         public event GameManagerEventHandler LivesUIEvent;
 
+        public bool isStartMenuScene;
         public bool isGameOver;
         public bool isMenuOn;
         public int  playerLives = 5;

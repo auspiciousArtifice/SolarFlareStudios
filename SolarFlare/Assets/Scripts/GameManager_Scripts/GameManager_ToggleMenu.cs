@@ -35,7 +35,7 @@ namespace GameManager
 
         private void CheckForMenuToggleRequest()
         {
-            if (Input.GetKeyUp(KeyCode.Escape) && !GameManager_Master.Instance.isGameOver && SceneManager.GetActiveScene().buildIndex != 0)
+            if (Input.GetKeyUp(KeyCode.Escape) && !GameManager_Master.Instance.isStartMenuScene && !GameManager_Master.Instance.isGameOver && SceneManager.GetActiveScene().buildIndex != 0)
             {
                 GameManager_Master.Instance.CallEventMenuToggle();
             }

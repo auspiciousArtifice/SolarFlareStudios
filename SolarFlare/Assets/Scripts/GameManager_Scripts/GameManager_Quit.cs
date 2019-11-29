@@ -18,7 +18,7 @@ namespace GameManager
 
         private void QuitGame()
         {
-            Debug.Log("Quit Succefully");
+            Debug.Log("Quit Successfully");
             Application.Quit();
         }
     }
