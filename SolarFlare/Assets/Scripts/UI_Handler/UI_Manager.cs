@@ -17,14 +17,12 @@ public class UI_Manager : MonoBehaviour
     GameObject coinHud;
     GameObject endScreen;
     GameObject character;
-    GameObject score;
 
     // Start is called before the first frame update
 
     void Start()
     {
         debug = false;
-        score = GameObject.FindGameObjectWithTag("score");
         textObj = GameObject.FindGameObjectWithTag("Notifications");
         timer = GameObject.FindGameObjectWithTag("timer");
         coinHud = GameObject.FindGameObjectWithTag("coin_hud");
@@ -48,7 +46,6 @@ public class UI_Manager : MonoBehaviour
         }
 
         // this shouldn't be necessary but... it was buggy so here we are
-        score = GameObject.FindGameObjectWithTag("score");
         textObj = GameObject.FindGameObjectWithTag("Notifications");
         timer = GameObject.FindGameObjectWithTag("timer");
         coinHud = GameObject.FindGameObjectWithTag("coin_hud");
@@ -62,15 +59,16 @@ public class UI_Manager : MonoBehaviour
         // makle the text updates
         if (textObj != null) textObj.GetComponent<Text>().text = message;
         if (timer != null) timer.GetComponent<Text>().text = "Time Remaining : " + ((int)levelTime).ToString();
-        if (coinHud != null) coinHud.GetComponent<Text>().text = "Score : " + score.GetComponent<Score_Tracker>().getScore().ToString();
+        if (coinHud != null) coinHud.GetComponent<Text>().text = "Score : " + Score_Tracker.getScore().ToString();
 
-        int finalScore = score.GetComponent<Score_Tracker>().getScore() + (int)levelTime;
-
-        endScreen.GetComponent<Text>().text =
-            "Congratulations!!\n" +
-            "You won the game with score of " + finalScore + ".\n" +
-            "Try again to beat this score!";
-
+        int finalScore = Score_Tracker.getScore() + (int)levelTime;
+		if (endScreen)
+		{
+			endScreen.GetComponent<Text>().text =
+				"Congratulations!!\n" +
+				"You won the game with score of " + finalScore + ".\n" +
+				"Try again to beat this score!";
+		}
         levelTime -= Time.deltaTime;
 
     }

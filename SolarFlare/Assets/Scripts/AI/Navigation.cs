@@ -20,18 +20,12 @@ public class Navigation : MonoBehaviour
 	public List<GameObject> patrolSpots = new List<GameObject>();
 	public float multiplyBy;
 	public int maxAI = 1;
-
 	private int healthAI;
 
 	/// <summary>
 	/// The player we want to find and destroy
 	/// </summary>
 	private GameObject player;
-
-	/// <summary>
-	/// Used for distance calculations
-	/// </summary>
-	private Transform myTransform;
 
 	/// <summary>
 	/// Used to move us to places
@@ -70,7 +64,6 @@ public class Navigation : MonoBehaviour
 	void Start()
 	{
 		agent = GetComponent<NavMeshAgent>();
-		myTransform = GetComponent<Transform>();
 		animator = GetComponent<Animator>();
 		player = GameObject.FindGameObjectWithTag("Player");
 		healthAI = maxAI;
@@ -85,23 +78,18 @@ public class Navigation : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (player == null)
-		{
-			agent.enabled = false;
-			attack = false;
-		}
-
-		if (CanMove())
+		if (CanMove() && (player && agent.enabled && transform != null))
 		{
 			//If the player gets too close, attack!
-			if (maxAI > 1 && healthAI <= maxAI / 2 && Vector3.Distance(myTransform.position, player.transform.position) < 10)
+			if (maxAI > 1 && healthAI <= maxAI / 2 && Vector3.Distance(transform.position, player.transform.position) < 10)
 			{
 				runningAway = true;
 				seekingPlayer = false;
+				attack = false;
 				seekingPatrol = false;
 				RunFrom(player.transform);
 			}
-			else if (Vector3.Distance(myTransform.position, player.transform.position) < 10)
+			else if (Vector3.Distance(transform.position, player.transform.position) < 10)
 			{
 				seekingPlayer = true;
 				seekingPatrol = false;
@@ -109,14 +97,14 @@ public class Navigation : MonoBehaviour
 				Seek(player.transform);
 			}
 			//if the player moved too far away, return to nearest patrol point
-			else if (seekingPlayer && Vector3.Distance(myTransform.position, player.transform.position) >= 10)
+			else if (seekingPlayer && Vector3.Distance(transform.position, player.transform.position) >= 10)
 			{
 				seekingPlayer = false;
 				runningAway = false;
 				float closestDist = 999999999;
 				for (int i = 0; i < patrolSpots.Count; i++)
 				{
-					float curDist = Vector3.Distance(myTransform.position, patrolSpots[i].transform.position);
+					float curDist = Vector3.Distance(transform.position, patrolSpots[i].transform.position);
                     if (curDist < closestDist)
 					{
 						closestDist = curDist;
@@ -126,21 +114,20 @@ public class Navigation : MonoBehaviour
             }
             if (patrol)
 			{
-				if (!seekingPatrol && !seekingPlayer && !runningAway)
+				if (!seekingPatrol && !seekingPlayer && !runningAway || curDest.position == null)
 				{
 					curDest = patrolSpots[patrolIndex % patrolSpots.Count].GetComponent<Transform>();
 					patrolIndex++;
 					Seek(curDest);
 					seekingPatrol = true;
 				}
-				else if (Vector3.Distance(myTransform.position, curDest.position) < 2) 
+				else if (Vector3.Distance(transform.position, curDest.position) < 2) 
                     // less because it was getting stuck in middle of small platforms
 				{
 					seekingPatrol = false;
 				}
 			}
 		}
-		//Debug.Log(seekingPlayer);
 		animator.SetBool("Seeking", seekingPlayer);
 		animator.SetBool("Patrol", seekingPatrol);
 		animator.SetBool("RunningAway", runningAway);
@@ -165,7 +152,7 @@ public class Navigation : MonoBehaviour
 	private void Seek(Transform destination)
 	{
 		agent.destination = destination.position;
-		if (Vector3.Distance(myTransform.position, player.transform.position) < distanceToAttack)
+		if (Vector3.Distance(transform.position, player.transform.position) < distanceToAttack)
 		{
 			attack = true; 
         }
@@ -182,20 +169,21 @@ public class Navigation : MonoBehaviour
 		Vector3 runTo = transform.position + transform.forward * multiplyBy;
 
 		NavMeshHit hit;
-		NavMesh.SamplePosition(runTo, out hit, 5, 1 << NavMesh.GetAreaFromName("Default"));
+		NavMesh.SamplePosition(runTo, out hit, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
 
 		agent.SetDestination(hit.position);
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-        // If the entering collider is the player OR in our case the sword
-        /*if (other.gameObject == player)
+		// If the entering collider is the player OR in our case the sword
+        if (other.CompareTag("Sword"))
 		{
-			PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+			Debug.Log("called");
+			CharacterMovement playerMovement = player.GetComponent<CharacterMovement>();
 			if (playerMovement)
 			{
-				if (playerMovement.IsAttacking())
+				if (playerMovement.isSwingingSword())
 				{
 					if (healthAI <= 1)
 					{
@@ -203,17 +191,19 @@ public class Navigation : MonoBehaviour
 						animator.SetBool("Died", died);
 						agent.enabled = false;
 						healthAI = 0;
-						Destroy(gameObject, 4f);
+						//Destroy(gameObject, 4f);
+						this.enabled = false;
 					}
 					else
 					{
 						animator.SetTrigger("Damaged");
                         ExecuteDamageEvent();
+						seekingPlayer = true;
 						healthAI--;
 					}
 				}
 			}
-		}*/
+		}
     }
 
     public void ExecuteAttackSound()
@@ -225,6 +215,6 @@ public class Navigation : MonoBehaviour
 	public void ExecuteDamageEvent()
 	{
 		EventManager.TriggerEvent<EnemyDamageEvent, Vector3>(transform.position);
-        GameObject.FindGameObjectWithTag("score").GetComponent<Score_Tracker>().incrementScoreBy(10);    
+        Score_Tracker.incrementScoreBy(10);    
     }
 }

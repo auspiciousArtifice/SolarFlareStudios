@@ -9,13 +9,14 @@ public class Instructions_UI : MonoBehaviour
     float levelTime;
     float instructionTime;
     float LEVEL_TOTAL_TIME = 65;
-    int coinNum = 0;
+    //int coinNum = 0;
     bool runTimer = false;
     GameObject textObj;
     GameObject timer;
-    GameObject coinHud;
+    //GameObject coinHud;
     GameObject[] coins;
-    GameObject character;
+    //GameObject character;
+	bool ranOnce;
 
     public GameObject enemy;
     /*
@@ -32,7 +33,8 @@ public class Instructions_UI : MonoBehaviour
         GrappleInstruction,
         CoinInstruction,
         EvadeEnemiesInstruction,
-        ScoreInstruction
+		AttackSwordInstruction,
+		ScoreInstruction
     };
 
     void Start()
@@ -40,8 +42,8 @@ public class Instructions_UI : MonoBehaviour
         state = InstructionState.WelcomeInstruction;
         textObj = GameObject.FindGameObjectWithTag("Notifications");
         timer = GameObject.FindGameObjectWithTag("timer");
-        coinHud = GameObject.FindGameObjectWithTag("coin_hud");
-        character = GameObject.FindGameObjectWithTag("Player");
+        //coinHud = GameObject.FindGameObjectWithTag("coin_hud");
+        //character = GameObject.FindGameObjectWithTag("Player");
         coins = GameObject.FindGameObjectsWithTag("PickUp");
         levelTime = LEVEL_TOTAL_TIME;
         instructionTime = 0;
@@ -75,7 +77,7 @@ public class Instructions_UI : MonoBehaviour
                     textObj.GetComponent<Text>().text = "First we'll explain some quick instructions. When you're ready to move on, just press tab!";
                     runTimer = true;
                 }
-                
+
                 if (Input.GetKeyDown("tab"))
                 {
                     state = InstructionState.MoveCameraInstruction;
@@ -108,27 +110,43 @@ public class Instructions_UI : MonoBehaviour
 
             case InstructionState.CoinInstruction :
                 textObj.GetComponent<Text>().text = "Collect coins along the way to add to your final score!";
-                for (int i = 0; i < coins.Length; i++)
-                {
-                    coins[i].SetActive(true);
-                }
+				if (!ranOnce)
+				{
+					for (int i = 0; i < coins.Length; i++)
+					{
+						coins[i].SetActive(true);
+					}
+					ranOnce = true;
+				}
                 if (Input.GetKeyDown("tab"))
-                { 
+                {
                     state = InstructionState.EvadeEnemiesInstruction;
-                }
+					ranOnce = false;
+				}
                 break;
 
             case InstructionState.EvadeEnemiesInstruction :
-                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies. Use N to attack!";
-                enemy.SetActive(true);
+                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies. Click 1 to switch between your grapple hook and your sword";
+				if (!ranOnce)
+				{
+					enemy.SetActive(true);
+					ranOnce = true;
+				}
                 if (Input.GetKeyDown("tab"))
                 {
-                    state = InstructionState.ScoreInstruction;
+                    state = InstructionState.AttackSwordInstruction;
                 }
                 break;
 
+			case InstructionState.AttackSwordInstruction:
+				textObj.GetComponent<Text>().text = "Go to the enemy and click in order to attack";
+				if (Input.GetKeyDown("tab"))
+				{
+					state = InstructionState.ScoreInstruction;
+				}
+				break;
 
-            case InstructionState.ScoreInstruction :
+			case InstructionState.ScoreInstruction :
                 textObj.GetComponent<Text>().text = "Good Luck!!";
                 if (Input.GetKeyDown("tab"))
                 {
@@ -149,7 +167,7 @@ public class Instructions_UI : MonoBehaviour
         /*
         // this shouldn't be necessary but... it was buggy so here we are
         textObj = GameObject.FindGameObjectWithTag("Notifications");
-       
+
         coinHud = GameObject.FindGameObjectWithTag("coin_hud");
         endScreen = GameObject.FindGameObjectWithTag("end_screen");
         character = GameObject.FindGameObjectWithTag("Player");
@@ -159,7 +177,7 @@ public class Instructions_UI : MonoBehaviour
 
         // makle the text updates
         if (textObj != null) textObj.GetComponent<Text>().text = message;
-        
+
         if (character != null) coinNum = character.GetComponent<Coin_Counter>().getCoinCount() * 5;
         if (coinHud != null) coinHud.GetComponent<Text>().text = coinNum.ToString();
 

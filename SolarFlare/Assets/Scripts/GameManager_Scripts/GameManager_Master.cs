@@ -32,7 +32,6 @@ namespace GameManager
         public bool isMenuOn;
         public int  playerLives = 5;
 
-
         public void CallEventMenuToggle()
         {
             if (MenuToggleEvent != null)
