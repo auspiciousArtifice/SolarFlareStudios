@@ -23,6 +23,7 @@ public class Instructions_UI : MonoBehaviour
     public enum InstructionState
     {
         WelcomeInstruction,
+        PauseInstruction,
         MoveCameraInstruction,
         MovePlayerInstruction,
         GrappleInstruction,
@@ -40,6 +41,7 @@ public class Instructions_UI : MonoBehaviour
             new InstructionState[]{
             InstructionState.WelcomeInstruction,
             InstructionState.MoveCameraInstruction,
+            InstructionState.PauseInstruction,
             InstructionState.MovePlayerInstruction,
             InstructionState.GrappleInstruction,
             InstructionState.CoinInstruction,
@@ -98,8 +100,12 @@ public class Instructions_UI : MonoBehaviour
                 textObj.GetComponent<Text>().text = "Move your mouse to rotate the game camera.";
                 break;
 
+            case InstructionState.PauseInstruction:
+                textObj.GetComponent<Text>().text = "Press escape to pause the game and then pause again to resume. The pause menu also has a recap of game instructions!";
+                break;
+
             case InstructionState.MovePlayerInstruction :
-                textObj.GetComponent<Text>().text = "Use arrows to move your game character and space to jump. Using shift will allow you to sprint and alt will make you dash mid-air.";
+                textObj.GetComponent<Text>().text = "Use WASD or arrows to move your game character and space to jump. Using shift will allow you to sprint and alt will make you dash mid-air.";
                 break;
 
             case InstructionState.GrappleInstruction:
@@ -123,7 +129,7 @@ public class Instructions_UI : MonoBehaviour
                 break;
 
             case InstructionState.EvadeEnemiesInstruction :
-                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies. Click 1 to switch between your grapple hook and your sword";
+                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies. Click n to switch between your grapple hook and your sword";
 				if (!ranOnce)
 				{
 					enemy.SetActive(true);
