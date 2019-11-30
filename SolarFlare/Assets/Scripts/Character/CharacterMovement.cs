@@ -18,14 +18,10 @@ public class CharacterMovement : MonoBehaviour
     private RuntimeAnimatorController ground_animator;
 	[SerializeField] private RuntimeAnimatorController air_animator;
 
-    private Transform leftFoot;
-    private Transform rightFoot;
-
 	private GameObject[] Sword;
 	private GameObject Hook;
 	private GrapplingHook grapplingHook;
 
-    private Vector3 move;
     private Vector3 dashDirection;
 
     // Animator variables
@@ -33,7 +29,6 @@ public class CharacterMovement : MonoBehaviour
 	private bool m_sprint;
     private float inputForward = 0f;
     private float inputTurn = 0f;
-	private float extraTurn;
 
     public float forwardInputFilter;
     public float turnInputFilter;
@@ -46,8 +41,6 @@ public class CharacterMovement : MonoBehaviour
     private int maxDashes = 1;
 
     private int dashesLeft;
-
-    private bool turnBasedOnLook;
 
     private bool isGrounded;
 
@@ -96,27 +89,12 @@ public class CharacterMovement : MonoBehaviour
 			Debug.LogWarning("No script grappling found");
 		}
 
-		/*m_controller = GetComponent<CharacterController>();
-        if (m_controller == null)
-            Debug.Log("Character Controller could not be found");*/
+		mainCamera = Camera.main;
+		if (mainCamera == null)
+		{
+			Debug.LogWarning("No main camera");
+		}
 	}
-
-    void Start()
-    {
-        move = new Vector3(0f, 0f, 0f);
-
-        mainCamera = Camera.main;
-        if (mainCamera == null)
-        {
-            Debug.LogWarning("No main camera");
-        }
-
-        leftFoot = this.transform.Find("knight_d_pelegrini@T-Pose/Hips/LeftUpLeg/LeftLeg/LeftFoot");
-        rightFoot = this.transform.Find("knight_d_pelegrini@T-Pose/Hips/RightUpLeg/RightLeg/RightFoot");
-
-        if (leftFoot == null || rightFoot == null)
-            Debug.Log("One of the feet could not be found");
-    }
 
     void Update()
     {
@@ -127,14 +105,7 @@ public class CharacterMovement : MonoBehaviour
         SwingSword();
         PushButton();
 		SwitchWeapon();
-        
-        //Rotate();
         //Dance();
-
-		// Apply move vector
-		//m_controller.Move(this.transform.forward * inputForward * Time.deltaTime * moveSpeed);
-
-		//m_rigidbody.AddForce(move * Time.deltaTime);
 
         // send input and other state parameters to the animator
         UpdateAnimator();
@@ -168,19 +139,8 @@ public class CharacterMovement : MonoBehaviour
         if (isGrounded)
         {
             inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
+			Rotate();
 
-            float angle = Vector3.SignedAngle(transform.forward, mainCamera.transform.forward, Vector3.up); //Angle between player direction and camera direction.
-            if (inputForward > 0.5 && (angle > 10 || angle < -10))
-            {
-                h = angle < 0 ? -1 : 1;
-
-                h = h * Mathf.Sqrt(1f - 0.5f * v * v);
-
-				// commented off because breaking things
-                //inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
-
-
-            }
         }
         else if (!isGrounded && !grapplingHook.swinging)
         {
@@ -237,7 +197,8 @@ public class CharacterMovement : MonoBehaviour
     // Apply rotation
     private void Rotate()
     {
-        transform.Rotate(0f, inputTurn, 0f);
+		Quaternion rotateCamera = mainCamera.transform.localRotation;
+		transform.rotation = new Quaternion(0, rotateCamera.y, 0, rotateCamera.w);
     }
 
     // makes character jump if on ground and press space
@@ -245,7 +206,6 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-			//move.y = JumpHeight;
 			m_animator.SetTrigger("Jump");
         }
     }
@@ -260,14 +220,9 @@ public class CharacterMovement : MonoBehaviour
             dashDirection = mainCamera.transform.forward.normalized;
             m_rigidbody.AddForce(dashDirection * DashDistance, ForceMode.Impulse);
             dashesLeft--;
-			//m_rigidbody.MovePosition(Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Drag.x + 1)) / -Time.deltaTime), 0,
-			//(Mathf.Log(1f / (Time.deltaTime * Drag.z + 1)) / -Time.deltaTime))));
 			m_animator.SetTrigger("Dash");
 
         }
-        //move.x /= 1 + Drag.x * Time.deltaTime;
-        //move.y /= 1 + Drag.y * Time.deltaTime;
-        //move.z /= 1 + Drag.z * Time.deltaTime;
     }
 
     //private void Dance()
@@ -306,7 +261,7 @@ public class CharacterMovement : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogWarning("ground sound is probably broken");
+			Debug.LogWarning("ground sound is broken");
 		}
     }
 
