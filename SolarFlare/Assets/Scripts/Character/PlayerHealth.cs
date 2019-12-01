@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     private Animator anim;                                              // Reference to the Animator component.
     private AudioSource playerAudio;                                    // Reference to the AudioSource component.
     private CharacterMovement playerMovement;                              // Reference to the player's movement.
-    private bool isDead;
+    [HideInInspector] public bool isDead;
     private int playerLives;
 
     public float Health { get { return currentHealth; } }
@@ -88,6 +88,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (damageClip != null && !isDead)
         {
+			anim.SetTrigger("Damaged");
             playerAudio.clip = damageClip;
             playerAudio.Play();
         }

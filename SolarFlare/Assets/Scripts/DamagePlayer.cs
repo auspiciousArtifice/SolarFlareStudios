@@ -12,6 +12,7 @@ public class DamagePlayer : MonoBehaviour
 	PlayerHealth playerHealth;                  // Reference to the player's health.
 	bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
 	float timer;                                // Timer for counting up to the next attack.
+	[SerializeField] private bool isAI;
 
 
 	void Start()
@@ -53,7 +54,19 @@ public class DamagePlayer : MonoBehaviour
 		// If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
 		if (timer >= timeBetweenAttacks && playerInRange)
 		{
-			Attack();
+			if (isAI)
+			{
+				Animator animator = GetComponentInParent<Animator>();
+				if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+				{
+					Attack();
+				}
+
+			}
+			else
+			{
+				Attack();
+			}
 		}
 	}
 
