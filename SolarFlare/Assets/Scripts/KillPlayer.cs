@@ -9,7 +9,7 @@ public class KillPlayer : MonoBehaviour
 		if (other.CompareTag("Player"))
 		{
 			PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-			if (playerHealth)
+			if (playerHealth && !playerHealth.isDead)
 			{
 				playerHealth.Death();
 			}
