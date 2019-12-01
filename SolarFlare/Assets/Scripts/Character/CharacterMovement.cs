@@ -36,8 +36,6 @@ public class CharacterMovement : MonoBehaviour
     public float airbornSpeedMult;
     public float swingingSpeedMult;
 
-    //private int groundContactCount;
-
     private int maxDashes = 1;
 
     private int dashesLeft;
@@ -46,7 +44,7 @@ public class CharacterMovement : MonoBehaviour
 
     public GameObject buttonObject;
 
-    void Awake()
+	void Awake()
     {
         m_animator = GetComponent<Animator>();
         if (m_animator == null)
@@ -109,7 +107,7 @@ public class CharacterMovement : MonoBehaviour
 
         // send input and other state parameters to the animator
         UpdateAnimator();
-    }
+	}
 
     // Calculate move
     private void Move()
@@ -207,7 +205,8 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
 			m_animator.SetTrigger("Jump");
-        }
+			isGrounded = false;
+		}
     }
 
     // makes character dash if press left alt
@@ -241,12 +240,13 @@ public class CharacterMovement : MonoBehaviour
 			m_animator.SetFloat("Forward", inputForward);
 			//m_animator.SetBool("Dance", m_dance);
 			m_animator.SetBool("Sprint", m_sprint);
+			m_animator.SetBool("Grounded", isGrounded);
 		}
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "ground")
+        if (collision.gameObject.tag == "ground" && !isGrounded)
         {
             m_animator.runtimeAnimatorController = ground_animator;
             m_animator.applyRootMotion = true;
@@ -267,11 +267,11 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "ground" && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("SwordSwing") && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        if (collision.gameObject.tag == "ground" && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("SwordSwing") && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") && !GetComponent<PlayerHealth>().isDead)
         {
             m_animator.runtimeAnimatorController = air_animator;
             m_animator.applyRootMotion = false;
             isGrounded = false;
         }
-    }
+	}
 }
