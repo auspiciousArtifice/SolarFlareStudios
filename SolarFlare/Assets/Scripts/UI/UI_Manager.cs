@@ -8,7 +8,7 @@ public class UI_Manager : MonoBehaviour
 {
 
     float levelTime;
-    float LEVEL_TOTAL_TIME = 100;
+    public float LEVEL_TOTAL_TIME = 300;
 
     public bool debug;
     private bool restarting;
