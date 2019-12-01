@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6271594216462825021}
   - component: {fileID: 6271594216462825020}
-  - component: {fileID: 6271594216462825022}
+  - component: {fileID: 1183630120}
   m_Layer: 0
   m_Name: LevelChanger
   m_TagString: Untagged
@@ -43,7 +43,7 @@ Animator:
   m_GameObject: {fileID: 6271594216462825019}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e1f0374a1cd12454c9d925c5fefe73d6, type: 2}
+  m_Controller: {fileID: 9100000, guid: a736d653b26c5e146b7592be9cb94856, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -52,7 +52,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6271594216462825022
+--- !u!114 &1183630120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6271594216462825019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8d269bc81864a4687076c9f99f92a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dcccba64a2a1f44b82363a5af4fcebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6271594217462964933
