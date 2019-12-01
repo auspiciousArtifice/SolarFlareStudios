@@ -129,7 +129,7 @@ public class Instructions_UI : MonoBehaviour
                 break;
 
             case InstructionState.EvadeEnemiesInstruction :
-                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies. Click n to switch between your grapple hook and your sword";
+                textObj.GetComponent<Text>().text = "You might also have to fight or evade enemies. Press 1 to switch between your grapple hook and your sword";
 				if (!ranOnce)
 				{
 					enemy.SetActive(true);

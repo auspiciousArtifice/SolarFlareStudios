@@ -2334,10 +2334,10 @@ PrefabInstance:
     - target: {fileID: 1928458391917127853, guid: 5b15236851608d04ba06d57af0986dc4,
         type: 3}
       propertyPath: m_Text
-      value: "Basics\t\nMove - \t\t\tWASD / Arrows\nJump -\t\t\t\tSpacebar\nSprint
-        -\t\t\tLeft Shift\nAir dash - \t\tLeft Alt or Right Click\n\nGrappling\nGrapple
-        / Release - \t\tClick \nLengthen Grapple - \t\tQ\nShorten Grapple - \t\t\tE\n\nAttacking\nSword
-        Swing - \tN\n"
+      value: "Basics\t\nMove - WASD / Arrows\nJump - Spacebar\nSprint - Left Shift\nAir
+        dash - Left Alt or Right Click\n\nGrappling\nGrapple / Release - Left Click
+        \nLengthen Grapple - Q\nShorten Grapple - E\n\nAttacking\nSwitch Between Grapple
+        and Sword - 1\nSword Swing - Left Click\n"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b15236851608d04ba06d57af0986dc4, type: 3}
@@ -3446,15 +3446,15 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2342876637801401070, guid: 6c4f4815ad54c384694c571ed1ea9b87,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2342876637801401068, guid: 6c4f4815ad54c384694c571ed1ea9b87,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342876637801401070, guid: 6c4f4815ad54c384694c571ed1ea9b87,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c4f4815ad54c384694c571ed1ea9b87, type: 3}
