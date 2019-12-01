@@ -17,6 +17,7 @@ public class GrapplingHook : MonoBehaviour
     [HideInInspector] public bool hooked;
     [HideInInspector] public GameObject hookedObj;
     [HideInInspector] public Vector3 pullVector;
+    [HideInInspector] public LineRenderer rope;
 
     private Rigidbody playerRB;
 

@@ -144,6 +144,13 @@ public class CharacterMovement : MonoBehaviour
         {
 
         }
+
+		if (grapplingHook.swinging && !isGrounded && m_animator.runtimeAnimatorController != air_animator)
+		{
+			m_animator.runtimeAnimatorController = air_animator;
+			m_animator.applyRootMotion = false;
+			isGrounded = false;
+		}
     }
 
 	private void SwitchWeapon()
