@@ -17,9 +17,10 @@ public class GrapplingHook : MonoBehaviour
     [HideInInspector] public bool hooked;
     [HideInInspector] public GameObject hookedObj;
     [HideInInspector] public Vector3 pullVector;
-    [HideInInspector] public LineRenderer rope;
 
     private Rigidbody playerRB;
+
+    private LineRenderer rope;
 
     private bool rappelling;
     private bool rappelDown;
@@ -76,7 +77,7 @@ public class GrapplingHook : MonoBehaviour
             hookedObj.GetComponent<ConfigurableJoint>().connectedBody = playerRB;
             playerRB.freezeRotation = false;
         }
-        else if (Input.GetMouseButtonDown(0) && (swinging || !hooked))
+        else if ((Input.GetMouseButtonDown(0) || Input.GetButtonDown("Dash") || Input.GetButtonDown("Jump")) && (swinging || !hooked))
         {
             if (swinging)
             {
@@ -113,7 +114,15 @@ public class GrapplingHook : MonoBehaviour
         {
             rope.positionCount = 2;
             rope.SetPosition(0, hand.transform.position);
-            rope.SetPosition(1, hook.transform.position);
+            if (swinging)
+            {
+                hook.GetComponent<MeshRenderer>().enabled = false;
+                rope.SetPosition(1, hookedObj.transform.position);
+            }
+            else
+            {
+                rope.SetPosition(1, hook.transform.position);
+            }
         }
 
         if (fired && !hooked)
@@ -169,6 +178,7 @@ public class GrapplingHook : MonoBehaviour
         hooked = false;
         swinging = false;
         distanceToHook = float.MaxValue;
+        hook.GetComponent<MeshRenderer>().enabled = true;
 
         rope.positionCount = 0;
     }

@@ -19,6 +19,7 @@ public class HookDetector : MonoBehaviour
         {
             grapplingHook.hooked = true;
             grapplingHook.hookedObj = other.gameObject;
+            player.GetComponent<CharacterMovement>().AddDash();
         }
     }
 }

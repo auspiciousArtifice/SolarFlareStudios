@@ -224,6 +224,18 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    public void AddDash()
+    {
+        if (dashesLeft + 1 > maxDashes)
+        {
+            dashesLeft = maxDashes;
+        }
+        else
+        {
+            dashesLeft++;
+        }
+    }
+
     //private void Dance()
     //{
     //    if (Input.GetKeyDown("k"))
@@ -246,7 +258,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "ground" && !isGrounded)
+        if (collision.gameObject.tag == "ground" && !isGrounded && !grapplingHook.swinging)
         {
             m_animator.runtimeAnimatorController = ground_animator;
             m_animator.applyRootMotion = true;
