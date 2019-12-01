@@ -21,8 +21,6 @@ public class GrapplingHook : MonoBehaviour
 
     private Rigidbody playerRB;
 
-    private LineRenderer rope;
-
     private bool rappelling;
     private bool rappelDown;
     private float currentDistance;

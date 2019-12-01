@@ -9,6 +9,7 @@
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
+[Ss]erializedBuildInfo/
 
 # Never ignore Asset meta data
 Assets/**/*.meta
