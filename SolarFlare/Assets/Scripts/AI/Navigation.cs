@@ -128,6 +128,10 @@ public class Navigation : MonoBehaviour
 				}
 			}
 		}
+		if (Vector3.Distance(transform.position, player.transform.position) >= 10 && attack)
+		{
+			attack = false;
+		}
 		animator.SetBool("Seeking", seekingPlayer);
 		animator.SetBool("Patrol", seekingPatrol);
 		animator.SetBool("RunningAway", runningAway);

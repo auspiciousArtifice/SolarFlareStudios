@@ -221,7 +221,13 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Dash") && dashesLeft > 0)
         {
-            Debug.Log("Dash");
+			if (!isGrounded && m_animator.runtimeAnimatorController != air_animator)
+			{
+				m_animator.runtimeAnimatorController = air_animator;
+				m_animator.applyRootMotion = false;
+				isGrounded = false;
+			}
+			Debug.Log("Dash");
 
             dashDirection = mainCamera.transform.forward.normalized;
             m_rigidbody.AddForce(dashDirection * DashDistance, ForceMode.Impulse);
