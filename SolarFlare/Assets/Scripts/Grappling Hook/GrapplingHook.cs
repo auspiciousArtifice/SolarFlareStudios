@@ -17,6 +17,7 @@ public class GrapplingHook : MonoBehaviour
     [HideInInspector] public bool hooked;
     [HideInInspector] public GameObject hookedObj;
     [HideInInspector] public Vector3 pullVector;
+    [HideInInspector] public LineRenderer rope;
 
     private Rigidbody playerRB;
 
@@ -25,8 +26,6 @@ public class GrapplingHook : MonoBehaviour
     private float currentDistance;
     private float distanceToHook;
     private Camera mainCamera;
-
-    private LineRenderer rope;
 
     private Vector3 HookTrajectory;
 
@@ -73,7 +72,7 @@ public class GrapplingHook : MonoBehaviour
             hookHolder.transform.parent = originalParent;
             swinging = true;
             playerRB.useGravity = true;
-            hookedObj.GetComponent<ConfigurableJoint>().transform.position = hook.transform.position;
+            hookedObj.GetComponent<ConfigurableJoint>().transform.position = hookedObj.transform.position;
             hookedObj.GetComponent<ConfigurableJoint>().connectedBody = playerRB;
             playerRB.freezeRotation = false;
         }
@@ -144,7 +143,8 @@ public class GrapplingHook : MonoBehaviour
             hookedObj.GetComponent<ConfigurableJoint>().yMotion = ConfigurableJointMotion.Free;
             if (!rappelDown)
             {
-                playerRB.AddForce(-Physics.gravity * 2, ForceMode.Acceleration);
+                Vector3 toHook = (hookedObj.transform.position - playerRB.transform.position).normalized;
+                playerRB.AddForce(toHook * (toHook.y > 0 ? Physics.gravity.magnitude * 2 / toHook.y : 0), ForceMode.Acceleration);
             }
         }
         else if (swinging && !rappelling)
