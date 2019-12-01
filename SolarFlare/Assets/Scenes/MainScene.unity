@@ -1580,27 +1580,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1014759837}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_ConnectedAnchor.x
-      value: 2.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_ConnectedAnchor.y
-      value: 12.26157
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_ConnectedAnchor.z
-      value: 39.8
-      objectReference: {fileID: 0}
     - target: {fileID: 7901481403266626381, guid: 29173623f1417754cbf4e146a090a413,
         type: 3}
       propertyPath: m_Name
       value: Hookable Object (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7901481403266626381, guid: 29173623f1417754cbf4e146a090a413,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7901481403266626384, guid: 29173623f1417754cbf4e146a090a413,
         type: 3}
@@ -1656,31 +1639,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -39.983
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845763727209967453, guid: 29173623f1417754cbf4e146a090a413,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 4.306416
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845763727209967453, guid: 29173623f1417754cbf4e146a090a413,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 17.315575
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845763727209967453, guid: 29173623f1417754cbf4e146a090a413,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.z
-      value: 44.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 7901481403266626383, guid: 29173623f1417754cbf4e146a090a413,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7901481403266626380, guid: 29173623f1417754cbf4e146a090a413,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29173623f1417754cbf4e146a090a413, type: 3}
@@ -5799,12 +5757,12 @@ PrefabInstance:
     - target: {fileID: 8667140777445833856, guid: 77c18e55b43f82144991f6f2e31dd394,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.19
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: 8667140777445833856, guid: 77c18e55b43f82144991f6f2e31dd394,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.6
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 8667140777445833856, guid: 77c18e55b43f82144991f6f2e31dd394,
         type: 3}
@@ -9504,6 +9462,8 @@ GameObject:
   - component: {fileID: 1365366652}
   - component: {fileID: 1365366651}
   - component: {fileID: 1365366655}
+  - component: {fileID: 1365366656}
+  - component: {fileID: 1365366657}
   m_Layer: 0
   m_Name: Moving Platform
   m_TagString: ground
@@ -9603,6 +9563,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1365366656
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365366650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.4872093, z: 1}
+  m_Center: {x: 0, y: 0.7436046, z: 0}
+--- !u!114 &1365366657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365366650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e636f9b9eccadd34d95a9e2455a288c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1367298013
 GameObject:
   m_ObjectHideFlags: 0
@@ -11381,6 +11366,8 @@ GameObject:
   - component: {fileID: 1634384917}
   - component: {fileID: 1634384916}
   - component: {fileID: 1634384915}
+  - component: {fileID: 1634384921}
+  - component: {fileID: 1634384920}
   m_Layer: 0
   m_Name: Moving Platform (2)
   m_TagString: ground
@@ -11480,6 +11467,31 @@ Transform:
   m_Father: {fileID: 924279825}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1634384920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634384914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e636f9b9eccadd34d95a9e2455a288c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1634384921
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634384914}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.4872093, z: 1}
+  m_Center: {x: 0, y: 0.7436046, z: 0}
 --- !u!1 &1662394370
 GameObject:
   m_ObjectHideFlags: 0
@@ -14690,6 +14702,8 @@ GameObject:
   - component: {fileID: 2056244907}
   - component: {fileID: 2056244906}
   - component: {fileID: 2056244910}
+  - component: {fileID: 2056244912}
+  - component: {fileID: 2056244911}
   m_Layer: 0
   m_Name: Moving Platform (1)
   m_TagString: ground
@@ -14789,6 +14803,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2056244911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056244905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e636f9b9eccadd34d95a9e2455a288c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2056244912
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056244905}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.4872093, z: 1}
+  m_Center: {x: 0, y: 0.7436046, z: 0}
 --- !u!4 &2063911292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1262060997302320531, guid: 9381e22215dccf04c8a831c4b9f0534f,
