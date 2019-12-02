@@ -5,10 +5,12 @@ using UnityEngine;
 public class RespawnCrate : MonoBehaviour
 {
     private Vector3 originalTransform;
+    private Quaternion originalRotation;
     // Start is called before the first frame update
     void Start()
     {
         originalTransform = transform.position;
+        originalRotation = transform.rotation;
     }
 
 
@@ -17,6 +19,7 @@ public class RespawnCrate : MonoBehaviour
         if (other.gameObject.tag == "DeathFloor")
         {
             transform.position = originalTransform;
+            transform.rotation = originalRotation;
         }
     }
 }
