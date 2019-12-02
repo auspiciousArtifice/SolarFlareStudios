@@ -5,12 +5,14 @@ using GameManager;
 
 public class PlayerHealth : MonoBehaviour
 {
+    
     public delegate void OnHealthChangedDelegate();
     public OnHealthChangedDelegate onHealthChangedCallback;
 
-    [SerializeField] private int startingHealth = 1;                              // The amount of health the player starts the game with.
+    [SerializeField] private int startingHealth = 4;                              // The amount of health the player starts the game with.
     [SerializeField] private int currentHealth;                                   // The current health the player has.
     [SerializeField] private int maxHealth = 4;
+    Slider healthSlider;
     public AudioClip deathClip;
     public AudioClip damageClip;
     public AudioClip healingClip;
@@ -45,6 +47,17 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent<CharacterMovement>();
         // Set the initial health of the player.
         currentHealth = startingHealth;
+        GameObject healthSliderContainer = GameObject.FindGameObjectWithTag("HealthSlider");
+        if (healthSliderContainer)
+        {
+            healthSlider = healthSliderContainer.GetComponent<Slider>();
+            if (healthSlider)
+            {
+                healthSlider.maxValue = startingHealth;
+                healthSlider.minValue = 0;
+                healthSlider.value = startingHealth;
+            }  
+        }
     }
 
     private void Start()
@@ -70,8 +83,9 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
-    private void Update()
+    void Update()
     {
+        if (healthSlider) healthSlider.value = currentHealth;
     }
 
 

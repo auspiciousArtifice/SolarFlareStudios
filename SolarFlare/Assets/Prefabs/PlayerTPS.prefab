@@ -2449,7 +2449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hook: {fileID: 5978267841720062372}
   hookHolder: {fileID: 5978267842646485137}
-  hand: {fileID: 0}
+  hand: {fileID: 6534471221819095320}
   player: {fileID: 8667140777445833857}
   hookTravelSpeed: 25
   playerTravelSpeed: 15
@@ -2458,6 +2458,7 @@ MonoBehaviour:
   hooked: 0
   hookedObj: {fileID: 0}
   pullVector: {x: 0, y: 0, z: 0}
+  rope: {fileID: 0}
 --- !u!114 &8667140777445833859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2506,12 +2507,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae2345ffec340b4888ffa9a96e7457a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 1
+  startingHealth: 4
   currentHealth: 0
   maxHealth: 4
   deathClip: {fileID: 8300000, guid: bfb686bf7198f114692c8554bf2f0843, type: 3}
   damageClip: {fileID: 8300000, guid: 60cf831403450424e959e4a6f208d718, type: 3}
   healingClip: {fileID: 8300000, guid: 5312b315d156ea847bc6fa5d71d709ac, type: 3}
+  isDead: 0
 --- !u!114 &-2917718155690935460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2780,11 +2782,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8667140777445833856}
     m_Modifications:
-    - target: {fileID: 632773091212320066, guid: 79a80a037e8d0f84a87863b7871aaed7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Hook
-      objectReference: {fileID: 0}
     - target: {fileID: 632773091359646839, guid: 79a80a037e8d0f84a87863b7871aaed7,
         type: 3}
       propertyPath: m_Name
@@ -2844,6 +2841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 632773091212320066, guid: 79a80a037e8d0f84a87863b7871aaed7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hook
       objectReference: {fileID: 0}
     - target: {fileID: 632773091212320094, guid: 79a80a037e8d0f84a87863b7871aaed7,
         type: 3}

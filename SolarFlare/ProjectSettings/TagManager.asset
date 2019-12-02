@@ -18,6 +18,7 @@ TagManager:
   - score
   - Sword
   - Lives
+  - HealthSlider
   layers:
   - Default
   - TransparentFX
