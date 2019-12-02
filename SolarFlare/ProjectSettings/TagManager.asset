@@ -19,6 +19,7 @@ TagManager:
   - Sword
   - Lives
   - HealthSlider
+  - PowerUp
   layers:
   - Default
   - TransparentFX

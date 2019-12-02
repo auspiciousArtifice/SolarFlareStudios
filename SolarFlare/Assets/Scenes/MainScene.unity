@@ -4144,6 +4144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUp
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 911b2aca4190de843ba6fc029bf3734d, type: 3}
+      propertyPath: m_TagString
+      value: PowerUp
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 911b2aca4190de843ba6fc029bf3734d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60.86
@@ -4206,6 +4210,26 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: fc94cd12f85ed124c911efcf0417f022, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 911b2aca4190de843ba6fc029bf3734d, type: 3}
+--- !u!1 &482439918 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 911b2aca4190de843ba6fc029bf3734d,
+    type: 3}
+  m_PrefabInstance: {fileID: 482439917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &482439919
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482439918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.5999995
+  m_Height: 2.167123
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.000000059604638, z: 0}
 --- !u!4 &496973815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 776685649615299012, guid: b2b7e768ef5bd9144bc523e456e37eb7,
@@ -5958,6 +5982,24 @@ PrefabInstance:
       objectReference: {fileID: 9000000, guid: 9990a349f78bf2c42b0a3a69a56c044a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77c18e55b43f82144991f6f2e31dd394, type: 3}
+--- !u!1 &744612044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8667140777445833857, guid: 77c18e55b43f82144991f6f2e31dd394,
+    type: 3}
+  m_PrefabInstance: {fileID: 744612043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &744612045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744612044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d079dcd7d17a0458b070da49acc7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &754820663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16388,6 +16430,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Alpha
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928458391917127853, guid: 5b15236851608d04ba06d57af0986dc4,
+        type: 3}
+      propertyPath: m_Text
+      value: "Basics\t\nMove - WASD / Arrows\nJump - Spacebar\nSprint - Left Shift\nAir
+        dash - Left Alt or Right Click\n\nGrappling\nGrapple / Release - Left Click
+        \nLengthen Grapple - Q\nShorten Grapple - E\n\nAttacking\nSwitch Between Grapple
+        and Sword - 1\nSword Swing - Left Click"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b15236851608d04ba06d57af0986dc4, type: 3}

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.043311067, g: 0.04445677, b: 0.059203453, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2024,6 +2024,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928458391917127853, guid: 5b15236851608d04ba06d57af0986dc4,
+        type: 3}
+      propertyPath: m_Text
+      value: "Basics\t\nMove - WASD / Arrows\nJump - Spacebar\nSprint - Left Shift\nAir
+        dash - Left Alt or Right Click\n\nGrappling\nGrapple / Release - Left Click
+        \nLengthen Grapple - Q\nShorten Grapple - E\n\nAttacking\nSwitch Between Grapple
+        and Sword - 1\nSword Swing - Left Click\n"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b15236851608d04ba06d57af0986dc4, type: 3}
