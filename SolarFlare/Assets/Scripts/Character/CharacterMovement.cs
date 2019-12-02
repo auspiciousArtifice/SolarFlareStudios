@@ -271,6 +271,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        m_rigidbody.angularVelocity = new Vector3(0,0,0);
         if (collision.gameObject.tag == "ground" && !isGrounded && !grapplingHook.swinging)
         {
             m_animator.runtimeAnimatorController = ground_animator;
@@ -288,6 +289,14 @@ public class CharacterMovement : MonoBehaviour
 		{
 			Debug.LogWarning("ground sound is broken");
 		}
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (grapplingHook.hooked && grapplingHook.swinging)
+        {
+            m_rigidbody.angularVelocity = new Vector3(0, 0, 0);
+        }
     }
 
     private void OnCollisionExit(Collision collision)
