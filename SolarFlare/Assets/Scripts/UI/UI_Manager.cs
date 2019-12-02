@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
 
-    float levelTime;
+    public float levelTime;
     public float LEVEL_TOTAL_TIME = 300;
 
     public bool debug;
@@ -20,6 +20,12 @@ public class UI_Manager : MonoBehaviour
     GameObject lives;
 
     // Start is called before the first frame update
+    public static UI_Manager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {

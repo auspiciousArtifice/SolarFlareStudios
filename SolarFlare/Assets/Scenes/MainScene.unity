@@ -10767,6 +10767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2641e41d2bc00e4c831ce9b67d1c6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelTime: 0
   LEVEL_TOTAL_TIME: 300
   debug: 0
 --- !u!1001 &1558057643
