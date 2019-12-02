@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PodRamp
       objectReference: {fileID: 0}
+    - target: {fileID: 1783324811932578, guid: 0cb6440e4cc77d9488aa2105834508a3, type: 3}
+      propertyPath: m_TagString
+      value: ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4956095900822440, guid: 0cb6440e4cc77d9488aa2105834508a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
