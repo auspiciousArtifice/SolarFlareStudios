@@ -189,7 +189,7 @@ public class Navigation : MonoBehaviour
 			{
 				if (playerMovement.isSwingingSword())
 				{
-					if (healthAI <= 1)
+					if (healthAI <= 1 && !died)
 					{
 						died = true;
                         // points for kill (5 points)
