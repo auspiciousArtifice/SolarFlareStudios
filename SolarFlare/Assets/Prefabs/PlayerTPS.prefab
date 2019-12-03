@@ -2508,7 +2508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae2345ffec340b4888ffa9a96e7457a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 4
+  startingHealth: 2
   currentHealth: 0
   maxHealth: 4
   deathClip: {fileID: 8300000, guid: bfb686bf7198f114692c8554bf2f0843, type: 3}
