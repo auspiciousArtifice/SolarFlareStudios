@@ -193,7 +193,7 @@ public class Navigation : MonoBehaviour
 					{
 						died = true;
                         // points for kill (5 points)
-                        Score_Tracker.Instance.decrementScoreBy(5);
+                        Score_Tracker.Instance.incrementScoreBy(5);
                         animator.SetBool("Died", died);
 						agent.enabled = false;
 						healthAI = 0;
@@ -206,7 +206,7 @@ public class Navigation : MonoBehaviour
                         ExecuteDamageEvent();
 						seekingPlayer = true;
                         // points for hurt (2 points)
-                        Score_Tracker.Instance.decrementScoreBy(2);
+                        Score_Tracker.Instance.incrementScoreBy(2);
                         healthAI--;
 					}
 				}
