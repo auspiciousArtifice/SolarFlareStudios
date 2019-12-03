@@ -22,6 +22,10 @@ public class WinScreenUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!UI_Manager.Instance)
+        {
+            return;
+        }
         int timeRemaining = (int) UI_Manager.Instance.levelTime;
         int livesRemaining = GameManager_Master.Instance.playerLives;
         int gameScore = Score_Tracker.Instance.getScore();

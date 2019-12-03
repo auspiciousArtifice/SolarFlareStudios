@@ -23,6 +23,7 @@ namespace GameManager
         public event GameManagerEventHandler RestartLevelEvent;
         public event GameManagerEventHandler GoToMenuSceneEvent;
         public event GameManagerEventHandler GameOverEvent;
+        public event GameManagerEventHandler GameWinEvent;
         public event GameManagerEventHandler QuitGameEvent;
         public event GameManagerEventHandler PlayerDiedEvent;
         public event GameManagerEventHandler LivesUIEvent;
@@ -62,6 +63,15 @@ namespace GameManager
             {
                 isGameOver = true;
                 GameOverEvent();
+            }
+        }
+
+        public void CallEventGameWin()
+        {
+            if (GameWinEvent != null)
+            {
+                isGameOver = true;
+                GameWinEvent();
             }
         }
 
