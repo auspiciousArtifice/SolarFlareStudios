@@ -81,10 +81,7 @@ namespace GameManager
                 {
                     playerLives--;
                     PlayerDiedEvent();
-                } else
-                {
-                    CallEventGameOver();
-                }
+                } 
             }
         }
 

@@ -24,6 +24,7 @@ namespace GameManager
 
         private void GameOver()
         {
+            Debug.Log("GameOver Called");
             if (panelGameOver != null)
             {
                 StartCoroutine(GameOverPanel());
@@ -32,7 +33,7 @@ namespace GameManager
 
         IEnumerator GameOverPanel()
         {
-            
+            yield return new WaitForSeconds(1.5f);
             CanvasGroup canvasGroup = panelGameOver.GetComponent<CanvasGroup>();
             if (canvasGroup)
             {  
@@ -44,7 +45,6 @@ namespace GameManager
             {
                 Debug.LogWarning("Missing End Game Panel Canvas Group reference");
             }
-            yield return new WaitForSeconds(0.5f);
         }
     }
 }

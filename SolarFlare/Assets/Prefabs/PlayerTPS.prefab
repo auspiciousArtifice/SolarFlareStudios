@@ -2377,6 +2377,7 @@ GameObject:
   - component: {fileID: -2917718155690935460}
   - component: {fileID: 2563174427308181678}
   - component: {fileID: -990250412676295145}
+  - component: {fileID: 744612045}
   m_Layer: 10
   m_Name: PlayerTPS
   m_TagString: Player
@@ -2449,7 +2450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hook: {fileID: 5978267841720062372}
   hookHolder: {fileID: 5978267842646485137}
-  hand: {fileID: 6534471221819095320}
+  hand: {fileID: 7883647841947502248}
   player: {fileID: 8667140777445833857}
   hookTravelSpeed: 25
   playerTravelSpeed: 15
@@ -2635,6 +2636,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7786852ccd31d24f87f149bea635957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &744612045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667140777445833857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d079dcd7d17a0458b070da49acc7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8803385260999850845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2707,6 +2720,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Longsword w_ Colliders
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_TagString
+      value: Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.14274503
@@ -2763,6 +2784,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.70000035
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 6a0eedfe1b2e14d47b276e72159e85b1, type: 3}
       propertyPath: m_TagString
       value: Sword
@@ -2786,6 +2819,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HookHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 632773091212320066, guid: 79a80a037e8d0f84a87863b7871aaed7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hook
       objectReference: {fileID: 0}
     - target: {fileID: 632773091359646832, guid: 79a80a037e8d0f84a87863b7871aaed7,
         type: 3}
@@ -2841,11 +2879,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 632773091212320066, guid: 79a80a037e8d0f84a87863b7871aaed7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Hook
       objectReference: {fileID: 0}
     - target: {fileID: 632773091212320094, guid: 79a80a037e8d0f84a87863b7871aaed7,
         type: 3}

@@ -126,7 +126,7 @@ public class PlayerHealth : MonoBehaviour
         Destroy(gameObject, 4f);
 		playerMovement.enabled = false;
         playerLives--;
-        if (playerLives >= 0)
+        if (playerLives > 0)
         {
             GameManager_Master.Instance.CallPlayerDied();
         }
