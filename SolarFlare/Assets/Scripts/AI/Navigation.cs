@@ -14,6 +14,8 @@ public class Navigation : MonoBehaviour
 	/// </summary>
 	public bool patrol = false;
 
+    private bool gaveDeathPoints = false;
+
 	/// <summary>
 	/// If we should be patrolling, which points should we patrol between
 	/// </summary>
@@ -136,7 +138,13 @@ public class Navigation : MonoBehaviour
 		animator.SetBool("Patrol", seekingPatrol);
 		animator.SetBool("RunningAway", runningAway);
 		animator.SetBool("Attack", attack);
-	}
+        if (died && !gaveDeathPoints)
+        {
+            Debug.Log("give murder points");
+            Score_Tracker.Instance.incrementScoreBy(5);
+            gaveDeathPoints = true;
+        }
+    }
 
 	private bool CanMove()
 	{
@@ -183,17 +191,16 @@ public class Navigation : MonoBehaviour
 		// If the entering collider is the player OR in our case the sword
         if (other.CompareTag("Sword"))
 		{
-			Debug.Log("called");
+			
 			CharacterMovement playerMovement = player.GetComponent<CharacterMovement>();
 			if (playerMovement)
 			{
 				if (playerMovement.isSwingingSword())
 				{
-					if (healthAI <= 1 && !died)
+					if (healthAI < 1)
 					{
 						died = true;
                         // points for kill (5 points)
-                        Score_Tracker.Instance.incrementScoreBy(5);
                         animator.SetBool("Died", died);
 						agent.enabled = false;
 						healthAI = 0;
@@ -205,8 +212,6 @@ public class Navigation : MonoBehaviour
 						animator.SetTrigger("Damaged");
                         ExecuteDamageEvent();
 						seekingPlayer = true;
-                        // points for hurt (2 points)
-                        Score_Tracker.Instance.incrementScoreBy(2);
                         healthAI--;
 					}
 				}
