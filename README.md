@@ -1,4 +1,4 @@
-# SolarFlareStudios
+# SolarFlareStudios :stars: :video_game:
 
 The purpose of the game is to reach the end of the level by swining on asteroids
 and dashing through the air. Instructions for gameplay are provided below and
