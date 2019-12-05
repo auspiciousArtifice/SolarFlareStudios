@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameManager
 {
@@ -89,7 +90,10 @@ namespace GameManager
             {
                 if (playerLives > 0)
                 {
-                    playerLives--;
+                    if (!SceneManager.GetActiveScene().name.Equals("instructions"))
+                    {
+                        playerLives--;
+                    }
                     PlayerDiedEvent();
                 } 
             }

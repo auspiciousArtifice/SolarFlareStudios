@@ -10574,6 +10574,11 @@ PrefabInstance:
       propertyPath: enemyDamageAudio
       value: 
       objectReference: {fileID: 8300000, guid: 06a7da5cb6f3b964d81c7918e208cbac, type: 3}
+    - target: {fileID: 7090067501535407230, guid: e94b300d72e02c7488e42e81f031bab0,
+        type: 3}
+      propertyPath: grappleLandAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 48c4dfbce3e00d7428860e9bada30593, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e94b300d72e02c7488e42e81f031bab0, type: 3}
 --- !u!1001 &776685649620282108
