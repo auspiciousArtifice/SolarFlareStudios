@@ -3571,15 +3571,15 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2342876637801401070, guid: 6c4f4815ad54c384694c571ed1ea9b87,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2342876637801401068, guid: 6c4f4815ad54c384694c571ed1ea9b87,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342876637801401070, guid: 6c4f4815ad54c384694c571ed1ea9b87,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c4f4815ad54c384694c571ed1ea9b87, type: 3}
@@ -3767,26 +3767,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6667755925258933296, guid: 0b01003cfbed4bf40aa72b667879b5dd,
-        type: 3}
-      propertyPath: isMenuOn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6667755925258933296, guid: 0b01003cfbed4bf40aa72b667879b5dd,
-        type: 3}
-      propertyPath: playerLives
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6667755924976354834, guid: 0b01003cfbed4bf40aa72b667879b5dd,
-        type: 3}
-      propertyPath: PauseMenu
-      value: 
-      objectReference: {fileID: 2081095949}
-    - target: {fileID: 6667755924976354841, guid: 0b01003cfbed4bf40aa72b667879b5dd,
-        type: 3}
-      propertyPath: panelGameOver
-      value: 
-      objectReference: {fileID: 618695966}
     - target: {fileID: 6667755924976354842, guid: 0b01003cfbed4bf40aa72b667879b5dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3842,6 +3822,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6667755925258933296, guid: 0b01003cfbed4bf40aa72b667879b5dd,
+        type: 3}
+      propertyPath: isMenuOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667755925258933296, guid: 0b01003cfbed4bf40aa72b667879b5dd,
+        type: 3}
+      propertyPath: playerLives
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667755924976354834, guid: 0b01003cfbed4bf40aa72b667879b5dd,
+        type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 2081095949}
+    - target: {fileID: 6667755924976354841, guid: 0b01003cfbed4bf40aa72b667879b5dd,
+        type: 3}
+      propertyPath: panelGameOver
+      value: 
+      objectReference: {fileID: 618695966}
     - target: {fileID: 6667755924976354839, guid: 0b01003cfbed4bf40aa72b667879b5dd,
         type: 3}
       propertyPath: secondsToFade

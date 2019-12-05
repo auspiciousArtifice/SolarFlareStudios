@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameManager;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody))]
@@ -308,4 +309,13 @@ public class CharacterMovement : MonoBehaviour
             isGrounded = false;
         }
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "WinZone" && isGrounded)
+        {
+            Debug.Log("Game Won");
+            GameManager_Master.Instance.CallEventGameWin();
+        }
+    }
 }
