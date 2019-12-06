@@ -4,9 +4,13 @@
 ## Group Members
 
 Ashleigh Paige Ryan, aryan34@gatech.edu, aryan34
+
 Destini Deinde-Smith, dds7@gatech.edu , dds7
+
 Isabelle Steffens, isteffens3@gatech.edu, isteffens3
+
 Harry Wang, hwang703@gatech.edu, hwang703
+
 Ben Le, ben3@gatech.edu, ben3
 
 
