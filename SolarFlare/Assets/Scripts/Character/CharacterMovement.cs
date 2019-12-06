@@ -95,7 +95,7 @@ public class CharacterMovement : MonoBehaviour
 		}
 	}
 
-    void Update()
+    void FixedUpdate()
     {
         Move();
         Jump();
