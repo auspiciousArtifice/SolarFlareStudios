@@ -105,8 +105,8 @@ public class Instructions_UI : MonoBehaviour
                 break;
 
             case InstructionState.MovePlayerInstruction :
-                textObj.GetComponent<Text>().text = "Use WASD or arrows to move your game character and space to jump. Using shift will allow you to sprint and alt will make you dash mid-air.";
-                break;
+                textObj.GetComponent<Text>().text = "Use WASD or arrows to move your game character and space to jump. Using shift will allow you to sprint and right click (or left-alt) will make you dash mid-air.";
+                break;das
 
             case InstructionState.GrappleInstruction:
                 textObj.GetComponent<Text>().text = "Click to launch a grappling hook and click again to release yourself! Q and E will shorten your grapple hook.";
