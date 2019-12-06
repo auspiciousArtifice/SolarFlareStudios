@@ -1852,6 +1852,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5920579005646429221, guid: 1612a31f720a43e4aacab46c4d2e08a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1722711056}
+    - target: {fileID: 5920579005646429221, guid: 1612a31f720a43e4aacab46c4d2e08a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CallQuitGame
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1612a31f720a43e4aacab46c4d2e08a5, type: 3}
 --- !u!1 &1038380098 stripped
