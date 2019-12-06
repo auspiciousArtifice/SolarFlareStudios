@@ -177,7 +177,7 @@ Hyper Vyper Font Package (Iconian Fonts)
 
 **Paige:** Did level design, platforms, created hollow platforms, added some animations, implemented power-up mechanic, portion of combat system, worked on bridge button system
 
-**Destini : ** Implemented all game UI including the menu scene, pause menu, HUD, game over, and game win screens. Created the instructions scene and implemented all necessary instructions and logic in this scene. Worked on score and time management, which included creating coin prefabs and implementing a singleton class to keep track of game score. Used event manager system to hook up sounds throughout game. Worked a bit on GameManager to make sure lives wouldn’t become negative and time out triggered player death.
+**Destini:** Implemented all game UI including the menu scene, pause menu, HUD, game over, and game win screens. Created the instructions scene and implemented all necessary instructions and logic in this scene. Worked on score and time management, which included creating coin prefabs and implementing a singleton class to keep track of game score. Used event manager system to hook up sounds throughout game. Worked a bit on GameManager to make sure lives wouldn’t become negative and time out triggered player death.
 
 ## Scene to Open
 Start by opening the Menu Scene.
