@@ -119,7 +119,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: e2460061bbe8e234abc80d4adc4905c3, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 134ed710fc4509a42940e20cf86da01f, type: 2}
 --- !u!4 &24357857 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7901481403266626384, guid: 29173623f1417754cbf4e146a090a413,
@@ -6881,6 +6881,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 5414539839453497567, guid: 49b5b0c6535244a0ebc1de7bd1105159,
+        type: 3}
+      propertyPath: m_TagString
+      value: WinZone
+      objectReference: {fileID: 0}
     - target: {fileID: 5413919007135662833, guid: 49b5b0c6535244a0ebc1de7bd1105159,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6960,11 +6965,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.x
       value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414539839453497567, guid: 49b5b0c6535244a0ebc1de7bd1105159,
-        type: 3}
-      propertyPath: m_TagString
-      value: WinZone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49b5b0c6535244a0ebc1de7bd1105159, type: 3}
