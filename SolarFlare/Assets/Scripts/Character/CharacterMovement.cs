@@ -95,7 +95,7 @@ public class CharacterMovement : MonoBehaviour
 		}
 	}
 
-    void FixedUpdate()
+    void Update()
     {
         Move();
         Jump();
@@ -110,10 +110,8 @@ public class CharacterMovement : MonoBehaviour
         UpdateAnimator();
 	}
 
-    // Calculate move
-    private void Move()
+    private void FixedUpdate()
     {
-
         float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
         float v = Input.GetAxisRaw("Vertical"); // setup v variables as our vertical input axis
         h *= Mathf.Sqrt(1f - 0.5f * v * v);
@@ -135,6 +133,33 @@ public class CharacterMovement : MonoBehaviour
             m_rigidbody.AddForce(perp * airbornSpeedMult * (-h));
             //m_rigidbody.AddForce(new Vector3(v, 0, -h).normalized * 5f);
         }
+    }
+
+    // Calculate move
+    private void Move()
+    {
+
+        float h = Input.GetAxisRaw("Horizontal");// setup h variable as our horizontal input axis
+        float v = Input.GetAxisRaw("Vertical"); // setup v variables as our vertical input axis
+        h *= Mathf.Sqrt(1f - 0.5f * v * v);
+        v *= Mathf.Sqrt(1f - 0.5f * h * h);
+        //if (isGrounded)
+        //{
+        //    inputForward = Mathf.Clamp(Mathf.Lerp(inputForward, v,
+        //        Time.deltaTime * forwardInputFilter), -forwardSpeedLimit, forwardSpeedLimit);
+        //}
+        //else if (grapplingHook.swinging)
+        //{
+        //    m_rigidbody.AddForce(v * mainCamera.transform.forward.normalized * swingingSpeedMult);
+        //    //m_rigidbody.transform.Rotate(0, h * Time.deltaTime * turnInputFilter, 0, Space.Self);
+        //}
+        //else
+        //{
+        //    m_rigidbody.AddForce(mainCamera.transform.forward.normalized * airbornSpeedMult * v);
+        //    Vector3 perp = Vector3.Cross(mainCamera.transform.forward.normalized, Vector3.up);
+        //    m_rigidbody.AddForce(perp * airbornSpeedMult * (-h));
+        //    //m_rigidbody.AddForce(new Vector3(v, 0, -h).normalized * 5f);
+        //}
         if (isGrounded)
         {
             inputTurn = Mathf.Lerp(inputTurn, h, Time.deltaTime * turnInputFilter);
