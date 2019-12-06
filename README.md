@@ -171,7 +171,7 @@ Hyper Vyper Font Package (Iconian Fonts)
 ## Who Did What
 **Harry:** Airborn player movement, dashing mechanic, grappling hook mechanics, hookable object modification to work with grappling, grappling visuals (rope, player model rotation in midair, etc), end of level platform and goal (lunar lander placement and animation)
 
-**Isabelle:** Player movement, player health system, initial grappling hook system, player attack system, player’s animator with root motion and blend trees to prevent hoping.  Game manager. AI moving and attacking system, AI health system, AI animator. Some level interaction like moving with the moving platforms. Platform and items animations. Post processing and skybox lighting. Fade in and fade out of level. 
+**Isabelle:** Player movement, player health system, initial grappling hook system, player attack system, player’s animator with root motion and blend trees to prevent hoping.  Game manager with restart state, game over state, game menu on, pause menu (mouse disappearing /reappearing, game pausing /unpausing, not being able to control the player while menu on). AI moving and attacking system, AI health system, AI animator. Some level interaction like moving with the moving platforms. Platform and items animations. Post processing and skybox lighting. Fade in and fade out of level. 
 
 **Ben:** Added 3rd person camera, platforms, made the hookable objects/asteroids, created seesaw crate puzzle, added regaining health with heart collectible, worked on crosshair, worked on having the grapple “lock on” to asteroids when looked at, worked on button bridge system.
 
